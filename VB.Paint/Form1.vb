@@ -21,6 +21,9 @@
     Private Sub BrushSize_SelectedItemChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushSize.SelectedItemChanged
         On Error GoTo brushsizehandler
         Dim pensize, coord As Single
+        If BrushSize.Text = "" Then
+            BrushSize.Text = "0"
+        End If
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
@@ -154,7 +157,7 @@ brushdrawhandler:
         End
     End Sub
 
-    Private Sub HelpButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpButton.Click
+    Private Sub HelpButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpBtn.Click
         On Error GoTo 404
         System.Diagnostics.Process.Start("readme.txt")
         Exit Sub
@@ -165,5 +168,9 @@ brushdrawhandler:
     Private Sub AboutButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AboutButton.Click
         Dim SecondForm As AboutBox1 = AboutBox1
         SecondForm.Show()
+    End Sub
+
+    Private Sub HelpButton_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpBtn.Click
+        System.Diagnostics.Process.Start("readme.txt")
     End Sub
 End Class
