@@ -47,6 +47,7 @@ Partial Class MainWindow
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem
         Me.NewButton = New System.Windows.Forms.ToolStripMenuItem
         Me.OpenButton = New System.Windows.Forms.ToolStripMenuItem
+        Me.SaveButton = New System.Windows.Forms.ToolStripMenuItem
         Me.CloseButton = New System.Windows.Forms.ToolStripMenuItem
         Me.ExitButton = New System.Windows.Forms.ToolStripMenuItem
         Me.StatusStrip = New System.Windows.Forms.StatusStrip
@@ -56,6 +57,8 @@ Partial Class MainWindow
         Me.CloseShortcut = New System.Windows.Forms.Button
         Me.OpenShortcut = New System.Windows.Forms.Button
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog
+        Me.SaveShortcut = New System.Windows.Forms.Button
+        Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog
         Me.PaintToolsPanel.SuspendLayout()
         CType(Me.BrushPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Image, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,7 +71,7 @@ Partial Class MainWindow
         Me.BrushColorOrange.BackColor = System.Drawing.Color.Orange
         Me.BrushColorOrange.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BrushColorOrange.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorOrange.Location = New System.Drawing.Point(172, 112)
+        Me.BrushColorOrange.Location = New System.Drawing.Point(171, 115)
         Me.BrushColorOrange.Name = "BrushColorOrange"
         Me.BrushColorOrange.Size = New System.Drawing.Size(23, 18)
         Me.BrushColorOrange.TabIndex = 12
@@ -78,7 +81,7 @@ Partial Class MainWindow
         '
         Me.NewShortcut.BackgroundImage = CType(resources.GetObject("NewShortcut.BackgroundImage"), System.Drawing.Image)
         Me.NewShortcut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.NewShortcut.Location = New System.Drawing.Point(611, 0)
+        Me.NewShortcut.Location = New System.Drawing.Point(584, 0)
         Me.NewShortcut.Name = "NewShortcut"
         Me.NewShortcut.Size = New System.Drawing.Size(28, 28)
         Me.NewShortcut.TabIndex = 17
@@ -106,7 +109,7 @@ Partial Class MainWindow
         Me.BrushColorWhite.BackColor = System.Drawing.Color.White
         Me.BrushColorWhite.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BrushColorWhite.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorWhite.Location = New System.Drawing.Point(172, 95)
+        Me.BrushColorWhite.Location = New System.Drawing.Point(171, 98)
         Me.BrushColorWhite.Name = "BrushColorWhite"
         Me.BrushColorWhite.Size = New System.Drawing.Size(23, 18)
         Me.BrushColorWhite.TabIndex = 11
@@ -125,7 +128,7 @@ Partial Class MainWindow
         Me.BrushColorBlack.BackColor = System.Drawing.Color.Black
         Me.BrushColorBlack.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BrushColorBlack.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorBlack.Location = New System.Drawing.Point(172, 78)
+        Me.BrushColorBlack.Location = New System.Drawing.Point(171, 81)
         Me.BrushColorBlack.Name = "BrushColorBlack"
         Me.BrushColorBlack.Size = New System.Drawing.Size(23, 18)
         Me.BrushColorBlack.TabIndex = 10
@@ -158,7 +161,7 @@ Partial Class MainWindow
         Me.BrushColorCyan.BackColor = System.Drawing.Color.Cyan
         Me.BrushColorCyan.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BrushColorCyan.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorCyan.Location = New System.Drawing.Point(150, 112)
+        Me.BrushColorCyan.Location = New System.Drawing.Point(149, 115)
         Me.BrushColorCyan.Name = "BrushColorCyan"
         Me.BrushColorCyan.Size = New System.Drawing.Size(23, 18)
         Me.BrushColorCyan.TabIndex = 9
@@ -169,7 +172,7 @@ Partial Class MainWindow
         Me.BrushColorMagenta.BackColor = System.Drawing.Color.Magenta
         Me.BrushColorMagenta.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BrushColorMagenta.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorMagenta.Location = New System.Drawing.Point(150, 95)
+        Me.BrushColorMagenta.Location = New System.Drawing.Point(149, 98)
         Me.BrushColorMagenta.Name = "BrushColorMagenta"
         Me.BrushColorMagenta.Size = New System.Drawing.Size(23, 18)
         Me.BrushColorMagenta.TabIndex = 8
@@ -180,7 +183,7 @@ Partial Class MainWindow
         Me.BrushColorYellow.BackColor = System.Drawing.Color.Yellow
         Me.BrushColorYellow.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BrushColorYellow.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorYellow.Location = New System.Drawing.Point(150, 78)
+        Me.BrushColorYellow.Location = New System.Drawing.Point(149, 81)
         Me.BrushColorYellow.Name = "BrushColorYellow"
         Me.BrushColorYellow.Size = New System.Drawing.Size(23, 18)
         Me.BrushColorYellow.TabIndex = 7
@@ -191,7 +194,7 @@ Partial Class MainWindow
         Me.BrushColorBlue.BackColor = System.Drawing.Color.Blue
         Me.BrushColorBlue.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BrushColorBlue.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorBlue.Location = New System.Drawing.Point(128, 112)
+        Me.BrushColorBlue.Location = New System.Drawing.Point(127, 115)
         Me.BrushColorBlue.Name = "BrushColorBlue"
         Me.BrushColorBlue.Size = New System.Drawing.Size(23, 18)
         Me.BrushColorBlue.TabIndex = 6
@@ -202,7 +205,7 @@ Partial Class MainWindow
         Me.BrushColorGreen.BackColor = System.Drawing.Color.Lime
         Me.BrushColorGreen.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BrushColorGreen.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorGreen.Location = New System.Drawing.Point(128, 95)
+        Me.BrushColorGreen.Location = New System.Drawing.Point(127, 98)
         Me.BrushColorGreen.Name = "BrushColorGreen"
         Me.BrushColorGreen.Size = New System.Drawing.Size(23, 18)
         Me.BrushColorGreen.TabIndex = 5
@@ -213,7 +216,7 @@ Partial Class MainWindow
         Me.BrushColorRed.BackColor = System.Drawing.Color.Red
         Me.BrushColorRed.Cursor = System.Windows.Forms.Cursors.Hand
         Me.BrushColorRed.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorRed.Location = New System.Drawing.Point(128, 78)
+        Me.BrushColorRed.Location = New System.Drawing.Point(127, 81)
         Me.BrushColorRed.Name = "BrushColorRed"
         Me.BrushColorRed.Size = New System.Drawing.Size(23, 18)
         Me.BrushColorRed.TabIndex = 4
@@ -340,7 +343,7 @@ Partial Class MainWindow
         '
         'FileMenu
         '
-        Me.FileMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewButton, Me.OpenButton, Me.CloseButton, Me.ExitButton})
+        Me.FileMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewButton, Me.OpenButton, Me.SaveButton, Me.CloseButton, Me.ExitButton})
         Me.FileMenu.Name = "FileMenu"
         Me.FileMenu.Size = New System.Drawing.Size(44, 24)
         Me.FileMenu.Text = "File"
@@ -359,6 +362,14 @@ Partial Class MainWindow
         Me.OpenButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
         Me.OpenButton.Size = New System.Drawing.Size(171, 24)
         Me.OpenButton.Text = "Open"
+        '
+        'SaveButton
+        '
+        Me.SaveButton.Enabled = False
+        Me.SaveButton.Name = "SaveButton"
+        Me.SaveButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.SaveButton.Size = New System.Drawing.Size(171, 24)
+        Me.SaveButton.Text = "Save"
         '
         'CloseButton
         '
@@ -420,7 +431,7 @@ Partial Class MainWindow
         Me.OpenShortcut.BackgroundImage = CType(resources.GetObject("OpenShortcut.BackgroundImage"), System.Drawing.Image)
         Me.OpenShortcut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.OpenShortcut.Enabled = False
-        Me.OpenShortcut.Location = New System.Drawing.Point(638, 0)
+        Me.OpenShortcut.Location = New System.Drawing.Point(611, 0)
         Me.OpenShortcut.Name = "OpenShortcut"
         Me.OpenShortcut.Size = New System.Drawing.Size(28, 28)
         Me.OpenShortcut.TabIndex = 19
@@ -430,11 +441,22 @@ Partial Class MainWindow
         '
         Me.OpenFileDialog.FileName = "OpenFileDialog1"
         '
+        'SaveShortcut
+        '
+        Me.SaveShortcut.BackgroundImage = CType(resources.GetObject("SaveShortcut.BackgroundImage"), System.Drawing.Image)
+        Me.SaveShortcut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.SaveShortcut.Location = New System.Drawing.Point(638, 0)
+        Me.SaveShortcut.Name = "SaveShortcut"
+        Me.SaveShortcut.Size = New System.Drawing.Size(28, 28)
+        Me.SaveShortcut.TabIndex = 20
+        Me.SaveShortcut.UseVisualStyleBackColor = True
+        '
         'MainWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(933, 528)
+        Me.Controls.Add(Me.SaveShortcut)
         Me.Controls.Add(Me.OpenShortcut)
         Me.Controls.Add(Me.NewShortcut)
         Me.Controls.Add(Me.CloseShortcut)
@@ -494,4 +516,7 @@ Partial Class MainWindow
     Friend WithEvents OpenButton As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenShortcut As System.Windows.Forms.Button
     Friend WithEvents OpenFileDialog As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents SaveShortcut As System.Windows.Forms.Button
+    Friend WithEvents SaveButton As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SaveFileDialog As System.Windows.Forms.SaveFileDialog
 End Class

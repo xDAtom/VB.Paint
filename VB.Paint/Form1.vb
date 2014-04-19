@@ -6,12 +6,18 @@
     Dim controlbrush = Brushes.Silver
     Dim bgbrush = Brushes.CornflowerBlue
 
+    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Me.Image.Image = New Bitmap(Me.Image.Width, Me.Image.Height)
+    End Sub
+
     Private Sub NewShortcut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewShortcut.Click
         Image.CreateGraphics.FillRectangle(whitebrush, 0, 0, 673, 473)
         Image.Enabled = True
         Image.BackColor = Color.White
         OpenButton.Enabled = True
         OpenShortcut.Enabled = True
+        SaveButton.Enabled = True
+        SaveShortcut.Enabled = True
     End Sub
 
     Private Sub NewButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewButton.Click
@@ -20,6 +26,8 @@
         Image.BackColor = Color.White
         OpenButton.Enabled = True
         OpenShortcut.Enabled = True
+        SaveButton.Enabled = True
+        SaveShortcut.Enabled = True
     End Sub
 
     Private Sub BrushSize_SelectedItemChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushSize.SelectedItemChanged
@@ -148,19 +156,25 @@ brushdrawhandler:
     Private Sub CloseShortcut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CloseShortcut.Click
         Image.CreateGraphics.FillRectangle(controlbrush, 0, 0, 673, 473)
         Image.BackgroundImage = Nothing
+        Image.Image = Nothing
         Image.BackColor = Color.Silver
         Image.Enabled = False
         OpenButton.Enabled = False
         OpenShortcut.Enabled = False
+        SaveButton.Enabled = False
+        SaveShortcut.Enabled = False
     End Sub
 
     Private Sub CloseButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CloseButton.Click
         Image.CreateGraphics.FillRectangle(controlbrush, 0, 0, 673, 473)
         Image.BackgroundImage = Nothing
+        Image.Image = Nothing
         Image.BackColor = Color.Silver
         Image.Enabled = False
         OpenButton.Enabled = False
         OpenShortcut.Enabled = False
+        SaveButton.Enabled = False
+        SaveShortcut.Enabled = False
     End Sub
 
     Private Sub ExitButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitButton.Click
@@ -207,6 +221,40 @@ brushdrawhandler:
             Dim img As String = OpenFileDialog.FileName
             Image.BackgroundImage = System.Drawing.Bitmap.FromFile(img)
             Image.BackgroundImageLayout = ImageLayout.Stretch
+        End If
+    End Sub
+
+    Private Sub SaveShortcut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveShortcut.Click
+        Dim bounds As Rectangle
+        Dim screenshot As System.Drawing.Bitmap
+        Dim graph As Graphics
+        bounds = Screen.PrimaryScreen.Bounds
+        screenshot = New System.Drawing.Bitmap(673, 473, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+        graph = Graphics.FromImage(screenshot)
+        graph.CopyFromScreen(Me.Location.X + 13, Me.Location.Y + 61, 0, 0, Me.Size, CopyPixelOperation.SourceCopy)
+        Image.Image = screenshot
+        SaveFileDialog.Title = "Save File"
+        SaveFileDialog.FileName = "*.bmp"
+        SaveFileDialog.Filter = "Bitmap |*.bmp"
+        If SaveFileDialog.ShowDialog() = DialogResult.OK Then
+            Image.Image.Save(SaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp)
+        End If
+    End Sub
+
+    Private Sub SaveButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveButton.Click
+        Dim bounds As Rectangle
+        Dim screenshot As System.Drawing.Bitmap
+        Dim graph As Graphics
+        bounds = Screen.PrimaryScreen.Bounds
+        screenshot = New System.Drawing.Bitmap(673, 473, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+        graph = Graphics.FromImage(screenshot)
+        graph.CopyFromScreen(Me.Location.X + 13, Me.Location.Y + 61, 0, 0, Me.Size, CopyPixelOperation.SourceCopy)
+        Image.Image = screenshot
+        SaveFileDialog.Title = "Save File"
+        SaveFileDialog.FileName = "*.bmp"
+        SaveFileDialog.Filter = "Bitmap |*.bmp"
+        If SaveFileDialog.ShowDialog() = DialogResult.OK Then
+            Image.Image.Save(SaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp)
         End If
     End Sub
 End Class
