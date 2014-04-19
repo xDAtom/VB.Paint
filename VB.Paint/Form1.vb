@@ -77,105 +77,6 @@ brushdrawhandler:
         draw = False
     End Sub
 
-    Private Sub BrushColorRed_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushColorRed.Click
-        StatusLabel.Text = "Changing Color..."
-        brush = Brushes.Red
-        Dim pensize, coord As Single
-        pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
-        StatusLabel.Text = "Ready"
-    End Sub
-
-    Private Sub BrushColorGreen_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushColorGreen.Click
-        StatusLabel.Text = "Changing Color..."
-        brush = Brushes.Lime
-        Dim pensize, coord As Single
-        pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
-        StatusLabel.Text = "Ready"
-    End Sub
-
-    Private Sub BrushColorBlue_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushColorBlue.Click
-        StatusLabel.Text = "Changing Color..."
-        brush = Brushes.Blue
-        Dim pensize, coord As Single
-        pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
-        StatusLabel.Text = "Ready"
-    End Sub
-
-    Private Sub BrushColorYellow_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushColorYellow.Click
-        StatusLabel.Text = "Changing Color..."
-        brush = Brushes.Yellow
-        Dim pensize, coord As Single
-        pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
-        StatusLabel.Text = "Ready"
-    End Sub
-
-    Private Sub BrushColorMagenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushColorMagenta.Click
-        StatusLabel.Text = "Changing Color..."
-        brush = Brushes.Magenta
-        Dim pensize, coord As Single
-        pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
-        StatusLabel.Text = "Ready"
-    End Sub
-
-    Private Sub BrushColorCyan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushColorCyan.Click
-        StatusLabel.Text = "Changing Color..."
-        brush = Brushes.Cyan
-        Dim pensize, coord As Single
-        pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
-        StatusLabel.Text = "Ready"
-    End Sub
-
-    Private Sub BrushColorBlack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushColorBlack.Click
-        StatusLabel.Text = "Changing Color..."
-        brush = Brushes.Black
-        Dim pensize, coord As Single
-        pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
-        StatusLabel.Text = "Ready"
-    End Sub
-
-    Private Sub BrushColorWhite_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushColorWhite.Click
-        StatusLabel.Text = "Changing Color..."
-        brush = Brushes.White
-        Dim pensize, coord As Single
-        pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
-        StatusLabel.Text = "Ready"
-    End Sub
-
-    Private Sub BrushColorOrange_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushColorOrange.Click
-        StatusLabel.Text = "Changing Color..."
-        brush = Brushes.Orange
-        Dim pensize, coord As Single
-        pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
-        StatusLabel.Text = "Ready"
-    End Sub
-
     Private Sub BrushPreview_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushPreview.LoadCompleted
         StatusLabel.Text = "Initializing Brush..."
         brush = Brushes.Black
@@ -311,5 +212,65 @@ nonimage2:
             Image.Image.Save(SaveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Bmp)
         End If
         StatusLabel.Text = "Ready"
+    End Sub
+
+    Private Sub Red_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Red.ValueChanged
+        Dim dec_r, perc_r, dec_g, perc_g, dec_b, perc_b As Double
+        perc_r = Red.Value
+        dec_r = (perc_r / 100) * 255
+        perc_g = Green.Value
+        dec_g = (perc_g / 100) * 255
+        perc_b = Blue.Value
+        dec_b = (perc_b / 100) * 255
+        Dim r, g, b As Integer
+        r = dec_r
+        g = dec_g
+        b = dec_b
+        brush = New SolidBrush(Color.FromArgb(r, g, b))
+        Dim pensize, coord As Single
+        pensize = BrushSize.Text
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
+        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+    End Sub
+
+    Private Sub Green_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Green.ValueChanged
+        Dim dec_r, perc_r, dec_g, perc_g, dec_b, perc_b As Double
+        perc_r = Red.Value
+        dec_r = (perc_r / 100) * 255
+        perc_g = Green.Value
+        dec_g = (perc_g / 100) * 255
+        perc_b = Blue.Value
+        dec_b = (perc_b / 100) * 255
+        Dim r, g, b As Integer
+        r = dec_r
+        g = dec_g
+        b = dec_b
+        brush = New SolidBrush(Color.FromArgb(r, g, b))
+        Dim pensize, coord As Single
+        pensize = BrushSize.Text
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
+        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+    End Sub
+
+    Private Sub Blue_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Blue.ValueChanged
+        Dim dec_r, perc_r, dec_g, perc_g, dec_b, perc_b As Double
+        perc_r = Red.Value
+        dec_r = (perc_r / 100) * 255
+        perc_g = Green.Value
+        dec_g = (perc_g / 100) * 255
+        perc_b = Blue.Value
+        dec_b = (perc_b / 100) * 255
+        Dim r, g, b As Integer
+        r = dec_r
+        g = dec_g
+        b = dec_b
+        brush = New SolidBrush(Color.FromArgb(r, g, b))
+        Dim pensize, coord As Single
+        pensize = BrushSize.Text
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
+        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
     End Sub
 End Class

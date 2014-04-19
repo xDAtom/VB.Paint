@@ -23,20 +23,14 @@ Partial Class MainWindow
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainWindow))
-        Me.BrushColorOrange = New System.Windows.Forms.Button
         Me.NewShortcut = New System.Windows.Forms.Button
         Me.Label3 = New System.Windows.Forms.Label
         Me.VerticalDivider = New System.Windows.Forms.Panel
-        Me.BrushColorWhite = New System.Windows.Forms.Button
         Me.HorizontalDivider = New System.Windows.Forms.Panel
-        Me.BrushColorBlack = New System.Windows.Forms.Button
         Me.PaintToolsPanel = New System.Windows.Forms.Panel
-        Me.BrushColorCyan = New System.Windows.Forms.Button
-        Me.BrushColorMagenta = New System.Windows.Forms.Button
-        Me.BrushColorYellow = New System.Windows.Forms.Button
-        Me.BrushColorBlue = New System.Windows.Forms.Button
-        Me.BrushColorGreen = New System.Windows.Forms.Button
-        Me.BrushColorRed = New System.Windows.Forms.Button
+        Me.Blue = New System.Windows.Forms.NumericUpDown
+        Me.Green = New System.Windows.Forms.NumericUpDown
+        Me.Red = New System.Windows.Forms.NumericUpDown
         Me.Label2 = New System.Windows.Forms.Label
         Me.BrushPreview = New System.Windows.Forms.PictureBox
         Me.BrushSize = New System.Windows.Forms.DomainUpDown
@@ -60,22 +54,14 @@ Partial Class MainWindow
         Me.SaveShortcut = New System.Windows.Forms.Button
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog
         Me.PaintToolsPanel.SuspendLayout()
+        CType(Me.Blue, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Green, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Red, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BrushPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Image, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'BrushColorOrange
-        '
-        Me.BrushColorOrange.BackColor = System.Drawing.Color.Orange
-        Me.BrushColorOrange.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BrushColorOrange.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorOrange.Location = New System.Drawing.Point(171, 115)
-        Me.BrushColorOrange.Name = "BrushColorOrange"
-        Me.BrushColorOrange.Size = New System.Drawing.Size(23, 18)
-        Me.BrushColorOrange.TabIndex = 12
-        Me.BrushColorOrange.UseVisualStyleBackColor = False
         '
         'NewShortcut
         '
@@ -104,17 +90,6 @@ Partial Class MainWindow
         Me.VerticalDivider.Size = New System.Drawing.Size(1, 536)
         Me.VerticalDivider.TabIndex = 10
         '
-        'BrushColorWhite
-        '
-        Me.BrushColorWhite.BackColor = System.Drawing.Color.White
-        Me.BrushColorWhite.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BrushColorWhite.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorWhite.Location = New System.Drawing.Point(171, 98)
-        Me.BrushColorWhite.Name = "BrushColorWhite"
-        Me.BrushColorWhite.Size = New System.Drawing.Size(23, 18)
-        Me.BrushColorWhite.TabIndex = 11
-        Me.BrushColorWhite.UseVisualStyleBackColor = False
-        '
         'HorizontalDivider
         '
         Me.HorizontalDivider.BackColor = System.Drawing.Color.Black
@@ -123,30 +98,13 @@ Partial Class MainWindow
         Me.HorizontalDivider.Size = New System.Drawing.Size(697, 1)
         Me.HorizontalDivider.TabIndex = 15
         '
-        'BrushColorBlack
-        '
-        Me.BrushColorBlack.BackColor = System.Drawing.Color.Black
-        Me.BrushColorBlack.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BrushColorBlack.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorBlack.Location = New System.Drawing.Point(171, 81)
-        Me.BrushColorBlack.Name = "BrushColorBlack"
-        Me.BrushColorBlack.Size = New System.Drawing.Size(23, 18)
-        Me.BrushColorBlack.TabIndex = 10
-        Me.BrushColorBlack.UseVisualStyleBackColor = False
-        '
         'PaintToolsPanel
         '
         Me.PaintToolsPanel.BackColor = System.Drawing.Color.White
+        Me.PaintToolsPanel.Controls.Add(Me.Blue)
+        Me.PaintToolsPanel.Controls.Add(Me.Green)
+        Me.PaintToolsPanel.Controls.Add(Me.Red)
         Me.PaintToolsPanel.Controls.Add(Me.Label3)
-        Me.PaintToolsPanel.Controls.Add(Me.BrushColorOrange)
-        Me.PaintToolsPanel.Controls.Add(Me.BrushColorWhite)
-        Me.PaintToolsPanel.Controls.Add(Me.BrushColorBlack)
-        Me.PaintToolsPanel.Controls.Add(Me.BrushColorCyan)
-        Me.PaintToolsPanel.Controls.Add(Me.BrushColorMagenta)
-        Me.PaintToolsPanel.Controls.Add(Me.BrushColorYellow)
-        Me.PaintToolsPanel.Controls.Add(Me.BrushColorBlue)
-        Me.PaintToolsPanel.Controls.Add(Me.BrushColorGreen)
-        Me.PaintToolsPanel.Controls.Add(Me.BrushColorRed)
         Me.PaintToolsPanel.Controls.Add(Me.Label2)
         Me.PaintToolsPanel.Controls.Add(Me.BrushPreview)
         Me.PaintToolsPanel.Controls.Add(Me.BrushSize)
@@ -156,76 +114,43 @@ Partial Class MainWindow
         Me.PaintToolsPanel.Size = New System.Drawing.Size(244, 536)
         Me.PaintToolsPanel.TabIndex = 14
         '
-        'BrushColorCyan
+        'Blue
         '
-        Me.BrushColorCyan.BackColor = System.Drawing.Color.Cyan
-        Me.BrushColorCyan.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BrushColorCyan.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorCyan.Location = New System.Drawing.Point(149, 115)
-        Me.BrushColorCyan.Name = "BrushColorCyan"
-        Me.BrushColorCyan.Size = New System.Drawing.Size(23, 18)
-        Me.BrushColorCyan.TabIndex = 9
-        Me.BrushColorCyan.UseVisualStyleBackColor = False
+        Me.Blue.BackColor = System.Drawing.Color.Blue
+        Me.Blue.ForeColor = System.Drawing.Color.Yellow
+        Me.Blue.Location = New System.Drawing.Point(133, 122)
+        Me.Blue.Name = "Blue"
+        Me.Blue.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Blue.Size = New System.Drawing.Size(49, 22)
+        Me.Blue.TabIndex = 16
+        Me.Blue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'BrushColorMagenta
+        'Green
         '
-        Me.BrushColorMagenta.BackColor = System.Drawing.Color.Magenta
-        Me.BrushColorMagenta.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BrushColorMagenta.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorMagenta.Location = New System.Drawing.Point(149, 98)
-        Me.BrushColorMagenta.Name = "BrushColorMagenta"
-        Me.BrushColorMagenta.Size = New System.Drawing.Size(23, 18)
-        Me.BrushColorMagenta.TabIndex = 8
-        Me.BrushColorMagenta.UseVisualStyleBackColor = False
+        Me.Green.BackColor = System.Drawing.Color.Lime
+        Me.Green.ForeColor = System.Drawing.Color.Magenta
+        Me.Green.Location = New System.Drawing.Point(133, 101)
+        Me.Green.Name = "Green"
+        Me.Green.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Green.Size = New System.Drawing.Size(49, 22)
+        Me.Green.TabIndex = 15
+        Me.Green.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'BrushColorYellow
+        'Red
         '
-        Me.BrushColorYellow.BackColor = System.Drawing.Color.Yellow
-        Me.BrushColorYellow.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BrushColorYellow.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorYellow.Location = New System.Drawing.Point(149, 81)
-        Me.BrushColorYellow.Name = "BrushColorYellow"
-        Me.BrushColorYellow.Size = New System.Drawing.Size(23, 18)
-        Me.BrushColorYellow.TabIndex = 7
-        Me.BrushColorYellow.UseVisualStyleBackColor = False
-        '
-        'BrushColorBlue
-        '
-        Me.BrushColorBlue.BackColor = System.Drawing.Color.Blue
-        Me.BrushColorBlue.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BrushColorBlue.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorBlue.Location = New System.Drawing.Point(127, 115)
-        Me.BrushColorBlue.Name = "BrushColorBlue"
-        Me.BrushColorBlue.Size = New System.Drawing.Size(23, 18)
-        Me.BrushColorBlue.TabIndex = 6
-        Me.BrushColorBlue.UseVisualStyleBackColor = False
-        '
-        'BrushColorGreen
-        '
-        Me.BrushColorGreen.BackColor = System.Drawing.Color.Lime
-        Me.BrushColorGreen.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BrushColorGreen.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorGreen.Location = New System.Drawing.Point(127, 98)
-        Me.BrushColorGreen.Name = "BrushColorGreen"
-        Me.BrushColorGreen.Size = New System.Drawing.Size(23, 18)
-        Me.BrushColorGreen.TabIndex = 5
-        Me.BrushColorGreen.UseVisualStyleBackColor = False
-        '
-        'BrushColorRed
-        '
-        Me.BrushColorRed.BackColor = System.Drawing.Color.Red
-        Me.BrushColorRed.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BrushColorRed.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BrushColorRed.Location = New System.Drawing.Point(127, 81)
-        Me.BrushColorRed.Name = "BrushColorRed"
-        Me.BrushColorRed.Size = New System.Drawing.Size(23, 18)
-        Me.BrushColorRed.TabIndex = 4
-        Me.BrushColorRed.UseVisualStyleBackColor = False
+        Me.Red.BackColor = System.Drawing.Color.Red
+        Me.Red.ForeColor = System.Drawing.Color.Cyan
+        Me.Red.Location = New System.Drawing.Point(133, 80)
+        Me.Red.Name = "Red"
+        Me.Red.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Red.Size = New System.Drawing.Size(49, 22)
+        Me.Red.TabIndex = 14
+        Me.Red.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(36, 98)
+        Me.Label2.Location = New System.Drawing.Point(43, 103)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(86, 17)
         Me.Label2.TabIndex = 3
@@ -445,6 +370,7 @@ Partial Class MainWindow
         '
         Me.SaveShortcut.BackgroundImage = CType(resources.GetObject("SaveShortcut.BackgroundImage"), System.Drawing.Image)
         Me.SaveShortcut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.SaveShortcut.Enabled = False
         Me.SaveShortcut.Location = New System.Drawing.Point(638, 0)
         Me.SaveShortcut.Name = "SaveShortcut"
         Me.SaveShortcut.Size = New System.Drawing.Size(28, 28)
@@ -473,6 +399,9 @@ Partial Class MainWindow
         Me.Text = "VB.Paint"
         Me.PaintToolsPanel.ResumeLayout(False)
         Me.PaintToolsPanel.PerformLayout()
+        CType(Me.Blue, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Green, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Red, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BrushPreview, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Image, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip.ResumeLayout(False)
@@ -483,20 +412,11 @@ Partial Class MainWindow
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents BrushColorOrange As System.Windows.Forms.Button
     Friend WithEvents NewShortcut As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents VerticalDivider As System.Windows.Forms.Panel
-    Friend WithEvents BrushColorWhite As System.Windows.Forms.Button
     Friend WithEvents HorizontalDivider As System.Windows.Forms.Panel
-    Friend WithEvents BrushColorBlack As System.Windows.Forms.Button
     Friend WithEvents PaintToolsPanel As System.Windows.Forms.Panel
-    Friend WithEvents BrushColorCyan As System.Windows.Forms.Button
-    Friend WithEvents BrushColorMagenta As System.Windows.Forms.Button
-    Friend WithEvents BrushColorYellow As System.Windows.Forms.Button
-    Friend WithEvents BrushColorBlue As System.Windows.Forms.Button
-    Friend WithEvents BrushColorGreen As System.Windows.Forms.Button
-    Friend WithEvents BrushColorRed As System.Windows.Forms.Button
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents BrushPreview As System.Windows.Forms.PictureBox
     Friend WithEvents BrushSize As System.Windows.Forms.DomainUpDown
@@ -519,4 +439,7 @@ Partial Class MainWindow
     Friend WithEvents SaveShortcut As System.Windows.Forms.Button
     Friend WithEvents SaveButton As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveFileDialog As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents Red As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Blue As System.Windows.Forms.NumericUpDown
+    Friend WithEvents Green As System.Windows.Forms.NumericUpDown
 End Class
