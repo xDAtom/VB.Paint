@@ -10,19 +10,23 @@
         Image.CreateGraphics.FillRectangle(whitebrush, 0, 0, 673, 473)
         Image.Enabled = True
         Image.BackColor = Color.White
+        OpenButton.Enabled = True
+        OpenShortcut.Enabled = True
     End Sub
 
     Private Sub NewButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewButton.Click
         Image.CreateGraphics.FillRectangle(whitebrush, 0, 0, 673, 473)
         Image.Enabled = True
         Image.BackColor = Color.White
+        OpenButton.Enabled = True
+        OpenShortcut.Enabled = True
     End Sub
 
     Private Sub BrushSize_SelectedItemChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushSize.SelectedItemChanged
         On Error GoTo brushsizehandler
         Dim pensize, coord As Single
         If BrushSize.Text = "" Then
-            BrushSize.Text = "0"
+            BrushSize.Text = "1"
         End If
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
@@ -143,14 +147,20 @@ brushdrawhandler:
 
     Private Sub CloseShortcut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CloseShortcut.Click
         Image.CreateGraphics.FillRectangle(controlbrush, 0, 0, 673, 473)
+        Image.BackgroundImage = Nothing
         Image.BackColor = Color.Silver
         Image.Enabled = False
+        OpenButton.Enabled = False
+        OpenShortcut.Enabled = False
     End Sub
 
     Private Sub CloseButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CloseButton.Click
         Image.CreateGraphics.FillRectangle(controlbrush, 0, 0, 673, 473)
+        Image.BackgroundImage = Nothing
         Image.BackColor = Color.Silver
         Image.Enabled = False
+        OpenButton.Enabled = False
+        OpenShortcut.Enabled = False
     End Sub
 
     Private Sub ExitButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitButton.Click
@@ -170,7 +180,33 @@ brushdrawhandler:
         SecondForm.Show()
     End Sub
 
-    Private Sub HelpButton_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpBtn.Click
-        System.Diagnostics.Process.Start("readme.txt")
+    Private Sub OpenButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenButton.Click
+        If Image.Enabled = False Then
+            OpenShortcut.Enabled = False
+            OpenButton.Enabled = False
+            Exit Sub
+        End If
+        OpenFileDialog.Filter = "All Files|*.*"
+        OpenFileDialog.FileName = ""
+        If OpenFileDialog.ShowDialog(Me) = DialogResult.OK Then
+            Dim img As String = OpenFileDialog.FileName
+            Image.BackgroundImage = System.Drawing.Bitmap.FromFile(img)
+            Image.BackgroundImageLayout = ImageLayout.Stretch
+        End If
+    End Sub
+
+    Private Sub OpenShortcut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OpenShortcut.Click
+        If Image.Enabled = False Then
+            OpenButton.Enabled = False
+            OpenShortcut.Enabled = False
+            Exit Sub
+        End If
+        OpenFileDialog.Filter = "All Files|*.*"
+        OpenFileDialog.FileName = ""
+        If OpenFileDialog.ShowDialog(Me) = DialogResult.OK Then
+            Dim img As String = OpenFileDialog.FileName
+            Image.BackgroundImage = System.Drawing.Bitmap.FromFile(img)
+            Image.BackgroundImageLayout = ImageLayout.Stretch
+        End If
     End Sub
 End Class

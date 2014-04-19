@@ -46,6 +46,7 @@ Partial Class MainWindow
         Me.AboutButton = New System.Windows.Forms.ToolStripMenuItem
         Me.FileMenu = New System.Windows.Forms.ToolStripMenuItem
         Me.NewButton = New System.Windows.Forms.ToolStripMenuItem
+        Me.OpenButton = New System.Windows.Forms.ToolStripMenuItem
         Me.CloseButton = New System.Windows.Forms.ToolStripMenuItem
         Me.ExitButton = New System.Windows.Forms.ToolStripMenuItem
         Me.StatusStrip = New System.Windows.Forms.StatusStrip
@@ -53,6 +54,8 @@ Partial Class MainWindow
         Me.MenuStrip = New System.Windows.Forms.MenuStrip
         Me.HelpBtn = New System.Windows.Forms.ToolStripMenuItem
         Me.CloseShortcut = New System.Windows.Forms.Button
+        Me.OpenShortcut = New System.Windows.Forms.Button
+        Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog
         Me.PaintToolsPanel.SuspendLayout()
         CType(Me.BrushPreview, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Image, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,7 +78,7 @@ Partial Class MainWindow
         '
         Me.NewShortcut.BackgroundImage = CType(resources.GetObject("NewShortcut.BackgroundImage"), System.Drawing.Image)
         Me.NewShortcut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.NewShortcut.Location = New System.Drawing.Point(638, 0)
+        Me.NewShortcut.Location = New System.Drawing.Point(611, 0)
         Me.NewShortcut.Name = "NewShortcut"
         Me.NewShortcut.Size = New System.Drawing.Size(28, 28)
         Me.NewShortcut.TabIndex = 17
@@ -337,7 +340,7 @@ Partial Class MainWindow
         '
         'FileMenu
         '
-        Me.FileMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewButton, Me.CloseButton, Me.ExitButton})
+        Me.FileMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewButton, Me.OpenButton, Me.CloseButton, Me.ExitButton})
         Me.FileMenu.Name = "FileMenu"
         Me.FileMenu.Size = New System.Drawing.Size(44, 24)
         Me.FileMenu.Text = "File"
@@ -348,6 +351,14 @@ Partial Class MainWindow
         Me.NewButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
         Me.NewButton.Size = New System.Drawing.Size(171, 24)
         Me.NewButton.Text = "New"
+        '
+        'OpenButton
+        '
+        Me.OpenButton.Enabled = False
+        Me.OpenButton.Name = "OpenButton"
+        Me.OpenButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.OpenButton.Size = New System.Drawing.Size(171, 24)
+        Me.OpenButton.Text = "Open"
         '
         'CloseButton
         '
@@ -404,11 +415,27 @@ Partial Class MainWindow
         Me.CloseShortcut.TabIndex = 18
         Me.CloseShortcut.UseVisualStyleBackColor = True
         '
+        'OpenShortcut
+        '
+        Me.OpenShortcut.BackgroundImage = CType(resources.GetObject("OpenShortcut.BackgroundImage"), System.Drawing.Image)
+        Me.OpenShortcut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.OpenShortcut.Enabled = False
+        Me.OpenShortcut.Location = New System.Drawing.Point(638, 0)
+        Me.OpenShortcut.Name = "OpenShortcut"
+        Me.OpenShortcut.Size = New System.Drawing.Size(28, 28)
+        Me.OpenShortcut.TabIndex = 19
+        Me.OpenShortcut.UseVisualStyleBackColor = True
+        '
+        'OpenFileDialog
+        '
+        Me.OpenFileDialog.FileName = "OpenFileDialog1"
+        '
         'MainWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(933, 528)
+        Me.Controls.Add(Me.OpenShortcut)
         Me.Controls.Add(Me.NewShortcut)
         Me.Controls.Add(Me.CloseShortcut)
         Me.Controls.Add(Me.PaintToolsPanel)
@@ -464,4 +491,7 @@ Partial Class MainWindow
     Friend WithEvents MenuStrip As System.Windows.Forms.MenuStrip
     Friend WithEvents CloseShortcut As System.Windows.Forms.Button
     Friend WithEvents HelpBtn As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OpenButton As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OpenShortcut As System.Windows.Forms.Button
+    Friend WithEvents OpenFileDialog As System.Windows.Forms.OpenFileDialog
 End Class
