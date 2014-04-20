@@ -56,6 +56,18 @@ brushsizehandler:
 
     Private Sub Image_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Image.MouseDown
         draw = True
+        On Error GoTo pixeldrawhandler
+        StatusLabel.Text = "Drawing..."
+        Dim pensize As Single
+        pensize = BrushSize.Text
+        If draw = True Then
+            Image.CreateGraphics.FillEllipse(brush, e.X - (pensize / 2), e.Y - (pensize / 2), pensize, pensize)
+        End If
+        StatusLabel.Text = "Ready"
+        Exit Sub
+pixeldrawhandler:
+        MsgBox("Crashed - String not accepted in Brush Size TextBox!", MsgBoxStyle.Critical, "Error")
+        End
     End Sub
 
     Private Sub Image_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Image.MouseMove
@@ -80,7 +92,11 @@ brushdrawhandler:
     Private Sub BrushPreview_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushPreview.LoadCompleted
         StatusLabel.Text = "Initializing Brush..."
         brush = Brushes.Black
-        BrushPreview.CreateGraphics.FillEllipse(brush, 110, 110, 1, 1)
+        Dim coord, pensize As Single
+        pensize = 1
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
+        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
         StatusLabel.Text = "Ready"
     End Sub
 
