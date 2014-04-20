@@ -5,6 +5,7 @@
     Dim whitebrush = Brushes.White
     Dim controlbrush = Brushes.Silver
     Dim bgbrush = Brushes.CornflowerBlue
+    Dim shape As String = "o"
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         StatusLabel.Text = "Initializing..."
@@ -46,7 +47,12 @@
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        If shape = "o" Then
+            BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        End If
+        If shape = "[]" Then
+            BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        End If
         StatusLabel.Text = "Ready"
         Exit Sub
 brushsizehandler:
@@ -61,7 +67,12 @@ brushsizehandler:
         Dim pensize As Single
         pensize = BrushSize.Text
         If draw = True Then
-            Image.CreateGraphics.FillEllipse(brush, e.X - (pensize / 2), e.Y - (pensize / 2), pensize, pensize)
+            If shape = "o" Then
+                Image.CreateGraphics.FillEllipse(brush, e.X - (pensize / 2), e.Y - (pensize / 2), pensize, pensize)
+            End If
+            If shape = "[]" Then
+                Image.CreateGraphics.FillRectangle(brush, e.X - (pensize / 2), e.Y - (pensize / 2), pensize, pensize)
+            End If
         End If
         StatusLabel.Text = "Ready"
         Exit Sub
@@ -76,7 +87,12 @@ pixeldrawhandler:
         Dim pensize As Single
         pensize = BrushSize.Text
         If draw = True Then
-            Image.CreateGraphics.FillEllipse(brush, e.X - (pensize / 2), e.Y - (pensize / 2), pensize, pensize)
+            If shape = "o" Then
+                Image.CreateGraphics.FillEllipse(brush, e.X - (pensize / 2), e.Y - (pensize / 2), pensize, pensize)
+            End If
+            If shape = "[]" Then
+                Image.CreateGraphics.FillRectangle(brush, e.X - (pensize / 2), e.Y - (pensize / 2), pensize, pensize)
+            End If
         End If
         StatusLabel.Text = "Ready"
         Exit Sub
@@ -96,7 +112,12 @@ brushdrawhandler:
         pensize = 1
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        If shape = "o" Then
+            BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        End If
+        If shape = "[]" Then
+            BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        End If
         StatusLabel.Text = "Ready"
     End Sub
 
@@ -248,7 +269,12 @@ nonimage2:
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        If shape = "o" Then
+            BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        End If
+        If shape = "[]" Then
+            BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        End If
         StatusLabel.Text = "Ready"
     End Sub
 
@@ -270,7 +296,12 @@ nonimage2:
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        If shape = "o" Then
+            BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        End If
+        If shape = "[]" Then
+            BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        End If
         StatusLabel.Text = "Ready"
     End Sub
 
@@ -292,7 +323,12 @@ nonimage2:
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
-        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        If shape = "o" Then
+            BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        End If
+        If shape = "[]" Then
+            BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        End If
         StatusLabel.Text = "Ready"
     End Sub
 
@@ -304,5 +340,27 @@ nonimage2:
         Exit Sub
 rgbnotfound:
         MsgBox("Cannot find RGB.rtf", MsgBoxStyle.SystemModal, "Error")
+    End Sub
+
+    Private Sub BrushShapeToCircleButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushShapeToCircleButton.Click
+        shape = "o"
+        Dim pensize, coord As Single
+        pensize = BrushSize.Text
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
+        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        BrushShapeToSquareButton.Enabled = True
+        BrushShapeToCircleButton.Enabled = False
+    End Sub
+
+    Private Sub BrushShapeToSquareButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushShapeToSquareButton.Click
+        shape = "[]"
+        Dim pensize, coord As Single
+        pensize = BrushSize.Text
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
+        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        BrushShapeToCircleButton.Enabled = True
+        BrushShapeToSquareButton.Enabled = False
     End Sub
 End Class

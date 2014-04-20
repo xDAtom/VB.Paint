@@ -24,17 +24,17 @@ Partial Class MainWindow
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainWindow))
         Me.NewShortcut = New System.Windows.Forms.Button
-        Me.Label3 = New System.Windows.Forms.Label
+        Me.Label4 = New System.Windows.Forms.Label
         Me.VerticalDivider = New System.Windows.Forms.Panel
         Me.HorizontalDivider = New System.Windows.Forms.Panel
         Me.PaintToolsPanel = New System.Windows.Forms.Panel
         Me.Blue = New System.Windows.Forms.NumericUpDown
         Me.Green = New System.Windows.Forms.NumericUpDown
         Me.Red = New System.Windows.Forms.NumericUpDown
-        Me.Label2 = New System.Windows.Forms.Label
+        Me.Label3 = New System.Windows.Forms.Label
         Me.BrushPreview = New System.Windows.Forms.PictureBox
         Me.BrushSize = New System.Windows.Forms.DomainUpDown
-        Me.Label1 = New System.Windows.Forms.Label
+        Me.Label2 = New System.Windows.Forms.Label
         Me.Image = New System.Windows.Forms.PictureBox
         Me.PictureBoxBackground = New System.Windows.Forms.Panel
         Me.AboutButton = New System.Windows.Forms.ToolStripMenuItem
@@ -49,12 +49,15 @@ Partial Class MainWindow
         Me.MenuStrip = New System.Windows.Forms.MenuStrip
         Me.HelpMenu = New System.Windows.Forms.ToolStripMenuItem
         Me.ViewReadmeButton = New System.Windows.Forms.ToolStripMenuItem
+        Me.RGBColorChartButton = New System.Windows.Forms.ToolStripMenuItem
         Me.CloseShortcut = New System.Windows.Forms.Button
         Me.OpenShortcut = New System.Windows.Forms.Button
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog
         Me.SaveShortcut = New System.Windows.Forms.Button
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog
-        Me.RGBColorChartButton = New System.Windows.Forms.ToolStripMenuItem
+        Me.BrushShapeToCircleButton = New System.Windows.Forms.Button
+        Me.BrushShapeToSquareButton = New System.Windows.Forms.Button
+        Me.Label1 = New System.Windows.Forms.Label
         Me.PaintToolsPanel.SuspendLayout()
         CType(Me.Blue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Green, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,14 +78,14 @@ Partial Class MainWindow
         Me.NewShortcut.TabIndex = 17
         Me.NewShortcut.UseVisualStyleBackColor = True
         '
-        'Label3
+        'Label4
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(10, 203)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(102, 17)
-        Me.Label3.TabIndex = 13
-        Me.Label3.Text = "Preview Brush:"
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(10, 264)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(102, 17)
+        Me.Label4.TabIndex = 13
+        Me.Label4.Text = "Preview Brush:"
         '
         'VerticalDivider
         '
@@ -103,14 +106,17 @@ Partial Class MainWindow
         'PaintToolsPanel
         '
         Me.PaintToolsPanel.BackColor = System.Drawing.Color.White
+        Me.PaintToolsPanel.Controls.Add(Me.Label1)
+        Me.PaintToolsPanel.Controls.Add(Me.BrushShapeToSquareButton)
+        Me.PaintToolsPanel.Controls.Add(Me.BrushShapeToCircleButton)
         Me.PaintToolsPanel.Controls.Add(Me.Blue)
         Me.PaintToolsPanel.Controls.Add(Me.Green)
         Me.PaintToolsPanel.Controls.Add(Me.Red)
+        Me.PaintToolsPanel.Controls.Add(Me.Label4)
         Me.PaintToolsPanel.Controls.Add(Me.Label3)
-        Me.PaintToolsPanel.Controls.Add(Me.Label2)
         Me.PaintToolsPanel.Controls.Add(Me.BrushPreview)
         Me.PaintToolsPanel.Controls.Add(Me.BrushSize)
-        Me.PaintToolsPanel.Controls.Add(Me.Label1)
+        Me.PaintToolsPanel.Controls.Add(Me.Label2)
         Me.PaintToolsPanel.Location = New System.Drawing.Point(693, -4)
         Me.PaintToolsPanel.Name = "PaintToolsPanel"
         Me.PaintToolsPanel.Size = New System.Drawing.Size(244, 536)
@@ -120,7 +126,7 @@ Partial Class MainWindow
         '
         Me.Blue.BackColor = System.Drawing.Color.Blue
         Me.Blue.ForeColor = System.Drawing.Color.Yellow
-        Me.Blue.Location = New System.Drawing.Point(133, 122)
+        Me.Blue.Location = New System.Drawing.Point(133, 174)
         Me.Blue.Name = "Blue"
         Me.Blue.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Blue.Size = New System.Drawing.Size(49, 22)
@@ -131,7 +137,7 @@ Partial Class MainWindow
         '
         Me.Green.BackColor = System.Drawing.Color.Lime
         Me.Green.ForeColor = System.Drawing.Color.Magenta
-        Me.Green.Location = New System.Drawing.Point(133, 101)
+        Me.Green.Location = New System.Drawing.Point(133, 153)
         Me.Green.Name = "Green"
         Me.Green.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Green.Size = New System.Drawing.Size(49, 22)
@@ -142,26 +148,26 @@ Partial Class MainWindow
         '
         Me.Red.BackColor = System.Drawing.Color.Red
         Me.Red.ForeColor = System.Drawing.Color.Cyan
-        Me.Red.Location = New System.Drawing.Point(133, 80)
+        Me.Red.Location = New System.Drawing.Point(133, 132)
         Me.Red.Name = "Red"
         Me.Red.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Red.Size = New System.Drawing.Size(49, 22)
         Me.Red.TabIndex = 14
         Me.Red.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'Label2
+        'Label3
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(43, 103)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(86, 17)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Brush Color:"
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(43, 155)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(86, 17)
+        Me.Label3.TabIndex = 3
+        Me.Label3.Text = "Brush Color:"
         '
         'BrushPreview
         '
         Me.BrushPreview.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BrushPreview.Location = New System.Drawing.Point(10, 226)
+        Me.BrushPreview.Location = New System.Drawing.Point(10, 287)
         Me.BrushPreview.Name = "BrushPreview"
         Me.BrushPreview.Size = New System.Drawing.Size(222, 222)
         Me.BrushPreview.TabIndex = 2
@@ -227,20 +233,20 @@ Partial Class MainWindow
         Me.BrushSize.Items.Add("180")
         Me.BrushSize.Items.Add("190")
         Me.BrushSize.Items.Add("200")
-        Me.BrushSize.Location = New System.Drawing.Point(133, 39)
+        Me.BrushSize.Location = New System.Drawing.Point(133, 91)
         Me.BrushSize.Name = "BrushSize"
         Me.BrushSize.Size = New System.Drawing.Size(49, 22)
         Me.BrushSize.TabIndex = 1
         Me.BrushSize.Text = "1"
         '
-        'Label1
+        'Label2
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(49, 40)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(80, 17)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Brush Size:"
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(49, 93)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(80, 17)
+        Me.Label2.TabIndex = 0
+        Me.Label2.Text = "Brush Size:"
         '
         'Image
         '
@@ -351,6 +357,13 @@ Partial Class MainWindow
         Me.ViewReadmeButton.Size = New System.Drawing.Size(249, 24)
         Me.ViewReadmeButton.Text = "Readme"
         '
+        'RGBColorChartButton
+        '
+        Me.RGBColorChartButton.Name = "RGBColorChartButton"
+        Me.RGBColorChartButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Shift Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
+        Me.RGBColorChartButton.Size = New System.Drawing.Size(249, 24)
+        Me.RGBColorChartButton.Text = "RGB Color Chart"
+        '
         'CloseShortcut
         '
         Me.CloseShortcut.BackgroundImage = CType(resources.GetObject("CloseShortcut.BackgroundImage"), System.Drawing.Image)
@@ -387,12 +400,35 @@ Partial Class MainWindow
         Me.SaveShortcut.TabIndex = 20
         Me.SaveShortcut.UseVisualStyleBackColor = True
         '
-        'RGBColorChartButton
+        'BrushShapeToCircleButton
         '
-        Me.RGBColorChartButton.Name = "RGBColorChartButton"
-        Me.RGBColorChartButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Shift Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
-        Me.RGBColorChartButton.Size = New System.Drawing.Size(249, 24)
-        Me.RGBColorChartButton.Text = "RGB Color Chart"
+        Me.BrushShapeToCircleButton.BackgroundImage = CType(resources.GetObject("BrushShapeToCircleButton.BackgroundImage"), System.Drawing.Image)
+        Me.BrushShapeToCircleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.BrushShapeToCircleButton.Enabled = False
+        Me.BrushShapeToCircleButton.Location = New System.Drawing.Point(133, 33)
+        Me.BrushShapeToCircleButton.Name = "BrushShapeToCircleButton"
+        Me.BrushShapeToCircleButton.Size = New System.Drawing.Size(34, 31)
+        Me.BrushShapeToCircleButton.TabIndex = 17
+        Me.BrushShapeToCircleButton.UseVisualStyleBackColor = True
+        '
+        'BrushShapeToSquareButton
+        '
+        Me.BrushShapeToSquareButton.BackgroundImage = CType(resources.GetObject("BrushShapeToSquareButton.BackgroundImage"), System.Drawing.Image)
+        Me.BrushShapeToSquareButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.BrushShapeToSquareButton.Location = New System.Drawing.Point(166, 33)
+        Me.BrushShapeToSquareButton.Name = "BrushShapeToSquareButton"
+        Me.BrushShapeToSquareButton.Size = New System.Drawing.Size(34, 31)
+        Me.BrushShapeToSquareButton.TabIndex = 18
+        Me.BrushShapeToSquareButton.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(35, 40)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(94, 17)
+        Me.Label1.TabIndex = 19
+        Me.Label1.Text = "Brush Shape:"
         '
         'MainWindow
         '
@@ -430,14 +466,14 @@ Partial Class MainWindow
 
     End Sub
     Friend WithEvents NewShortcut As System.Windows.Forms.Button
-    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents VerticalDivider As System.Windows.Forms.Panel
     Friend WithEvents HorizontalDivider As System.Windows.Forms.Panel
     Friend WithEvents PaintToolsPanel As System.Windows.Forms.Panel
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents BrushPreview As System.Windows.Forms.PictureBox
     Friend WithEvents BrushSize As System.Windows.Forms.DomainUpDown
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Image As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBoxBackground As System.Windows.Forms.Panel
     Friend WithEvents AboutButton As System.Windows.Forms.ToolStripMenuItem
@@ -461,4 +497,7 @@ Partial Class MainWindow
     Friend WithEvents Green As System.Windows.Forms.NumericUpDown
     Friend WithEvents ViewReadmeButton As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RGBColorChartButton As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents BrushShapeToSquareButton As System.Windows.Forms.Button
+    Friend WithEvents BrushShapeToCircleButton As System.Windows.Forms.Button
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class
