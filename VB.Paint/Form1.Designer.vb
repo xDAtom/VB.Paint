@@ -47,12 +47,14 @@ Partial Class MainWindow
         Me.StatusStrip = New System.Windows.Forms.StatusStrip
         Me.StatusLabel = New System.Windows.Forms.ToolStripStatusLabel
         Me.MenuStrip = New System.Windows.Forms.MenuStrip
-        Me.HelpBtn = New System.Windows.Forms.ToolStripMenuItem
+        Me.HelpMenu = New System.Windows.Forms.ToolStripMenuItem
+        Me.ViewReadmeButton = New System.Windows.Forms.ToolStripMenuItem
         Me.CloseShortcut = New System.Windows.Forms.Button
         Me.OpenShortcut = New System.Windows.Forms.Button
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog
         Me.SaveShortcut = New System.Windows.Forms.Button
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog
+        Me.RGBColorChartButton = New System.Windows.Forms.ToolStripMenuItem
         Me.PaintToolsPanel.SuspendLayout()
         CType(Me.Blue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Green, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -328,18 +330,26 @@ Partial Class MainWindow
         'MenuStrip
         '
         Me.MenuStrip.BackColor = System.Drawing.SystemColors.Control
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.HelpBtn, Me.AboutButton})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.HelpMenu, Me.AboutButton})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(933, 28)
         Me.MenuStrip.TabIndex = 13
         Me.MenuStrip.Text = "MenuStrip1"
         '
-        'HelpBtn
+        'HelpMenu
         '
-        Me.HelpBtn.Name = "HelpBtn"
-        Me.HelpBtn.Size = New System.Drawing.Size(53, 24)
-        Me.HelpBtn.Text = "Help"
+        Me.HelpMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewReadmeButton, Me.RGBColorChartButton})
+        Me.HelpMenu.Name = "HelpMenu"
+        Me.HelpMenu.Size = New System.Drawing.Size(53, 24)
+        Me.HelpMenu.Text = "Help"
+        '
+        'ViewReadmeButton
+        '
+        Me.ViewReadmeButton.Name = "ViewReadmeButton"
+        Me.ViewReadmeButton.ShortcutKeys = System.Windows.Forms.Keys.F1
+        Me.ViewReadmeButton.Size = New System.Drawing.Size(249, 24)
+        Me.ViewReadmeButton.Text = "Readme"
         '
         'CloseShortcut
         '
@@ -376,6 +386,13 @@ Partial Class MainWindow
         Me.SaveShortcut.Size = New System.Drawing.Size(28, 28)
         Me.SaveShortcut.TabIndex = 20
         Me.SaveShortcut.UseVisualStyleBackColor = True
+        '
+        'RGBColorChartButton
+        '
+        Me.RGBColorChartButton.Name = "RGBColorChartButton"
+        Me.RGBColorChartButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Shift Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
+        Me.RGBColorChartButton.Size = New System.Drawing.Size(249, 24)
+        Me.RGBColorChartButton.Text = "RGB Color Chart"
         '
         'MainWindow
         '
@@ -432,7 +449,7 @@ Partial Class MainWindow
     Friend WithEvents StatusLabel As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents MenuStrip As System.Windows.Forms.MenuStrip
     Friend WithEvents CloseShortcut As System.Windows.Forms.Button
-    Friend WithEvents HelpBtn As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents HelpMenu As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenButton As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenShortcut As System.Windows.Forms.Button
     Friend WithEvents OpenFileDialog As System.Windows.Forms.OpenFileDialog
@@ -442,4 +459,6 @@ Partial Class MainWindow
     Friend WithEvents Red As System.Windows.Forms.NumericUpDown
     Friend WithEvents Blue As System.Windows.Forms.NumericUpDown
     Friend WithEvents Green As System.Windows.Forms.NumericUpDown
+    Friend WithEvents ViewReadmeButton As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents RGBColorChartButton As System.Windows.Forms.ToolStripMenuItem
 End Class

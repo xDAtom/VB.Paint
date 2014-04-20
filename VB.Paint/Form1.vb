@@ -133,7 +133,7 @@ brushdrawhandler:
         End
     End Sub
 
-    Private Sub HelpButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpBtn.Click
+    Private Sub ViewReadmeButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ViewReadmeButton.Click
         On Error GoTo 404
         StatusLabel.Text = "Starting readme..."
         System.Diagnostics.Process.Start("readme.txt")
@@ -294,5 +294,15 @@ nonimage2:
         coord = 111 - (pensize / 2)
         BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
         StatusLabel.Text = "Ready"
+    End Sub
+
+    Private Sub RGBColorChartButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RGBColorChartButton.Click
+        On Error GoTo rgbnotfound
+        StatusLabel.Text = "Starting RGB Color Chart..."
+        System.Diagnostics.Process.Start("RGB.rtf")
+        StatusLabel.Text = "Ready"
+        Exit Sub
+rgbnotfound:
+        MsgBox("Cannot find RGB.rtf", MsgBoxStyle.SystemModal, "Error")
     End Sub
 End Class
