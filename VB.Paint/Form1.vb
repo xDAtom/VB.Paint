@@ -215,6 +215,7 @@ nonimage2:
     End Sub
 
     Private Sub Red_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Red.ValueChanged
+        StatusLabel.Text = "Changing Color..."
         Dim dec_r, perc_r, dec_g, perc_g, dec_b, perc_b As Double
         perc_r = Red.Value
         dec_r = (perc_r / 100) * 255
@@ -232,9 +233,11 @@ nonimage2:
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
         BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        StatusLabel.Text = "Ready"
     End Sub
 
     Private Sub Green_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Green.ValueChanged
+        StatusLabel.Text = "Changing Color..."
         Dim dec_r, perc_r, dec_g, perc_g, dec_b, perc_b As Double
         perc_r = Red.Value
         dec_r = (perc_r / 100) * 255
@@ -252,9 +255,11 @@ nonimage2:
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
         BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        StatusLabel.Text = "Ready"
     End Sub
 
     Private Sub Blue_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Blue.ValueChanged
+        StatusLabel.Text = "Changing Color..."
         Dim dec_r, perc_r, dec_g, perc_g, dec_b, perc_b As Double
         perc_r = Red.Value
         dec_r = (perc_r / 100) * 255
@@ -272,5 +277,6 @@ nonimage2:
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
         BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        StatusLabel.Text = "Ready"
     End Sub
 End Class
