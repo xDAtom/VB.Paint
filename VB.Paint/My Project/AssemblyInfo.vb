@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("VB.Paint")> 
-<Assembly: AssemblyDescription("VB.Paint is a lightweight image editing program. Coded in VB2008, it is very simple to use. The program features a brush which is customizable in size and color. All 16.5M colors are supported (via RGB system). The shape of the brush may be changed in the next revisions. So enjoy this as it is my first program. ;)")> 
+<Assembly: AssemblyDescription("VB.Paint is a lightweight image editing program. Coded in VB2008, it is very simple to use. The program features a brush which is very customizable. The brush's color can be changed by specifying RGB values. You can also change the shape into a circle or a square. There is also a Text Tool, which allows you to perfectly write text in Arial font on your drawing. The Open and Save functions are working like a charm. Enjoy this as it is my first program. ;)")> 
 <Assembly: AssemblyCompany("xDAtom Productions")> 
 <Assembly: AssemblyProduct("VB.Paint")> 
 <Assembly: AssemblyCopyright("Copyright ©  2014")> 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.4.1")> 
-<Assembly: AssemblyFileVersion("1.0.4.1")> 
+<Assembly: AssemblyVersion("1.1.0.0")> 
+<Assembly: AssemblyFileVersion("1.1.0.0")> 
