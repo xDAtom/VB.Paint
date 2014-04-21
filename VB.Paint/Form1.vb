@@ -6,6 +6,9 @@
     Dim controlbrush = Brushes.Silver
     Dim bgbrush = Brushes.CornflowerBlue
     Dim shape As String = "o"
+    Dim fontsize As Single = 20
+    Dim stringfont As New Font("Arial", fontsize)
+    Dim drawstring As String = "text"
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         StatusLabel.Text = "Initializing..."
@@ -45,13 +48,20 @@
             BrushSize.Text = "1"
         End If
         pensize = BrushSize.Text
+        fontsize = BrushSize.Text
+        stringfont = New Font("Arial", fontsize)
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
         If shape = "o" Then
+            coord = 111 - (pensize / 2)
             BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
         End If
         If shape = "[]" Then
+            coord = 111 - (pensize / 2)
             BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        End If
+        If shape = "ß" Then
+            coord = 0
+            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, coord, coord)
         End If
         StatusLabel.Text = "Ready"
         Exit Sub
@@ -73,6 +83,9 @@ brushsizehandler:
             If shape = "[]" Then
                 Image.CreateGraphics.FillRectangle(brush, e.X - (pensize / 2), e.Y - (pensize / 2), pensize, pensize)
             End If
+            If shape = "ß" Then
+                Image.CreateGraphics.DrawString(drawstring, stringfont, brush, e.X, e.Y)
+            End If
         End If
         StatusLabel.Text = "Ready"
         Exit Sub
@@ -92,6 +105,9 @@ pixeldrawhandler:
             End If
             If shape = "[]" Then
                 Image.CreateGraphics.FillRectangle(brush, e.X - (pensize / 2), e.Y - (pensize / 2), pensize, pensize)
+            End If
+            If shape = "ß" Then
+                Image.CreateGraphics.DrawString(drawstring, stringfont, brush, e.X, e.Y)
             End If
         End If
         StatusLabel.Text = "Ready"
@@ -117,6 +133,9 @@ brushdrawhandler:
         End If
         If shape = "[]" Then
             BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        End If
+        If shape = "ß" Then
+            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, 0, 0)
         End If
         StatusLabel.Text = "Ready"
     End Sub
@@ -275,6 +294,9 @@ nonimage2:
         If shape = "[]" Then
             BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
         End If
+        If shape = "ß" Then
+            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, 0, 0)
+        End If
         StatusLabel.Text = "Ready"
     End Sub
 
@@ -301,6 +323,9 @@ nonimage2:
         End If
         If shape = "[]" Then
             BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        End If
+        If shape = "ß" Then
+            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, 0, 0)
         End If
         StatusLabel.Text = "Ready"
     End Sub
@@ -329,6 +354,9 @@ nonimage2:
         If shape = "[]" Then
             BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
         End If
+        If shape = "ß" Then
+            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, 0, 0)
+        End If
         StatusLabel.Text = "Ready"
     End Sub
 
@@ -343,24 +371,75 @@ rgbnotfound:
     End Sub
 
     Private Sub BrushShapeToCircleButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushShapeToCircleButton.Click
+        StatusLabel.Text = "Changing Brush Shape..."
         shape = "o"
+        Label2.Text = "Brush Size:"
+        Label3.Text = "Brush Color:"
+        Label4.Visible = False
+        TextToDrawBox.Visible = False
+        TextToDrawBox.Enabled = False
+        Label5.Text = "Preview Brush:"
         Dim pensize, coord As Single
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
         BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        StatusLabel.Text = "Ready"
         BrushShapeToSquareButton.Enabled = True
+        BrushShapeToTextButton.Enabled = True
         BrushShapeToCircleButton.Enabled = False
     End Sub
 
     Private Sub BrushShapeToSquareButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushShapeToSquareButton.Click
+        StatusLabel.Text = "Changing Brush Shape..."
         shape = "[]"
+        Label2.Text = "Brush Size:"
+        Label3.Text = "Brush Color:"
+        Label4.Visible = False
+        TextToDrawBox.Visible = False
+        TextToDrawBox.Enabled = False
+        Label5.Text = "Preview Brush:"
         Dim pensize, coord As Single
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
         coord = 111 - (pensize / 2)
         BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        StatusLabel.Text = "Ready"
         BrushShapeToCircleButton.Enabled = True
+        BrushShapeToTextButton.Enabled = True
         BrushShapeToSquareButton.Enabled = False
+    End Sub
+
+    Private Sub BrushShapeToTextButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushShapeToTextButton.Click
+        StatusLabel.Text = "Changing Brush Shape..."
+        shape = "ß"
+        Label2.Text = "  Font Size:"
+        Label3.Text = "  Text Color:"
+        Label4.Visible = True
+        TextToDrawBox.Enabled = True
+        TextToDrawBox.Visible = True
+        Label5.Text = "  Preview Text:"
+        Dim pensize, coord As Single
+        pensize = BrushSize.Text
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
+        coord = 0
+        BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, coord, coord)
+        StatusLabel.Text = "Ready"
+        BrushShapeToCircleButton.Enabled = True
+        BrushShapeToSquareButton.Enabled = True
+        BrushShapeToTextButton.Enabled = False
+    End Sub
+
+    Private Sub TextToDrawBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextToDrawBox.TextChanged
+        StatusLabel.Text = "Changing Text to Draw..."
+        drawstring = TextToDrawBox.Text
+        If shape = "ß" Then
+            Dim pensize, coord As Single
+            pensize = BrushSize.Text
+            BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
+            coord = 0
+            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, coord, coord)
+        End If
+        StatusLabel.Text = "Ready"
     End Sub
 End Class
