@@ -12,7 +12,7 @@
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         StatusLabel.Text = "Initializing..."
-        Me.Image.Image = New Bitmap(Me.Image.Width, Me.Image.Height)
+        Me.Image.Image = New Bitmap(Image.Size.Width, Image.Size.Height)
         StatusLabel.Text = "Ready"
     End Sub
 
@@ -50,18 +50,16 @@
         pensize = BrushSize.Text
         fontsize = BrushSize.Text
         stringfont = New Font("Arial", fontsize)
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+        coord = (BrushPreview.Size.Width - pensize) / 2
         If shape = "o" Then
-            coord = 111 - (pensize / 2)
             BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
         End If
         If shape = "[]" Then
-            coord = 111 - (pensize / 2)
             BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
         End If
         If shape = "ß" Then
-            coord = 0
-            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, coord, coord)
+            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, 0, 0)
         End If
         StatusLabel.Text = "Ready"
         Exit Sub
@@ -126,8 +124,8 @@ brushdrawhandler:
         brush = Brushes.Black
         Dim coord, pensize As Single
         pensize = 1
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+        coord = (BrushPreview.Size.Width - pensize) / 2
         If shape = "o" Then
             BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
         End If
@@ -234,13 +232,11 @@ nonimage2:
 
     Private Sub SaveShortcut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveShortcut.Click
         StatusLabel.Text = "Saving Drawing..."
-        Dim bounds As Rectangle
         Dim screenshot As System.Drawing.Bitmap
         Dim graph As Graphics
-        bounds = Screen.PrimaryScreen.Bounds
-        screenshot = New System.Drawing.Bitmap(673, 473, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+        screenshot = New System.Drawing.Bitmap(Image.Width, Image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
         graph = Graphics.FromImage(screenshot)
-        graph.CopyFromScreen(Me.Location.X + 13, Me.Location.Y + 61, 0, 0, Me.Size, CopyPixelOperation.SourceCopy)
+        graph.CopyFromScreen(Me.Location.X + 12, Me.Location.Y + 55, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
         Image.Image = screenshot
         SaveFileDialog.Title = "Save File"
         SaveFileDialog.FileName = "*.bmp"
@@ -253,13 +249,11 @@ nonimage2:
 
     Private Sub SaveButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SaveButton.Click
         StatusLabel.Text = "Saving Drawing..."
-        Dim bounds As Rectangle
         Dim screenshot As System.Drawing.Bitmap
         Dim graph As Graphics
-        bounds = Screen.PrimaryScreen.Bounds
-        screenshot = New System.Drawing.Bitmap(673, 473, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+        screenshot = New System.Drawing.Bitmap(Image.Width, Image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
         graph = Graphics.FromImage(screenshot)
-        graph.CopyFromScreen(Me.Location.X + 13, Me.Location.Y + 61, 0, 0, Me.Size, CopyPixelOperation.SourceCopy)
+        graph.CopyFromScreen(Me.Location.X + 12, Me.Location.Y + 55, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
         Image.Image = screenshot
         SaveFileDialog.Title = "Save File"
         SaveFileDialog.FileName = "*.bmp"
@@ -286,8 +280,8 @@ nonimage2:
         brush = New SolidBrush(Color.FromArgb(r, g, b))
         Dim pensize, coord As Single
         pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+        coord = (BrushPreview.Size.Width - pensize) / 2
         If shape = "o" Then
             BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
         End If
@@ -316,8 +310,8 @@ nonimage2:
         brush = New SolidBrush(Color.FromArgb(r, g, b))
         Dim pensize, coord As Single
         pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+        coord = (BrushPreview.Size.Width - pensize) / 2
         If shape = "o" Then
             BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
         End If
@@ -346,8 +340,8 @@ nonimage2:
         brush = New SolidBrush(Color.FromArgb(r, g, b))
         Dim pensize, coord As Single
         pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+        coord = (BrushPreview.Size.Width - pensize) / 2
         If shape = "o" Then
             BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
         End If
@@ -381,8 +375,8 @@ rgbnotfound:
         Label5.Text = "Preview Brush:"
         Dim pensize, coord As Single
         pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+        coord = (BrushPreview.Size.Width - pensize) / 2
         BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
         StatusLabel.Text = "Ready"
         BrushShapeToSquareButton.Enabled = True
@@ -401,8 +395,8 @@ rgbnotfound:
         Label5.Text = "Preview Brush:"
         Dim pensize, coord As Single
         pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 111 - (pensize / 2)
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+        coord = (BrushPreview.Size.Width - pensize) / 2
         BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
         StatusLabel.Text = "Ready"
         BrushShapeToCircleButton.Enabled = True
@@ -419,11 +413,10 @@ rgbnotfound:
         TextToDrawBox.Enabled = True
         TextToDrawBox.Visible = True
         Label5.Text = "  Preview Text:"
-        Dim pensize, coord As Single
+        Dim pensize As Single
         pensize = BrushSize.Text
-        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-        coord = 0
-        BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, coord, coord)
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+        BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, 0, 0)
         StatusLabel.Text = "Ready"
         BrushShapeToCircleButton.Enabled = True
         BrushShapeToSquareButton.Enabled = True
@@ -434,11 +427,10 @@ rgbnotfound:
         StatusLabel.Text = "Changing Text to Draw..."
         drawstring = TextToDrawBox.Text
         If shape = "ß" Then
-            Dim pensize, coord As Single
+            Dim pensize As Single
             pensize = BrushSize.Text
-            BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, 222, 222)
-            coord = 0
-            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, coord, coord)
+            BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, 0, 0)
         End If
         StatusLabel.Text = "Ready"
     End Sub

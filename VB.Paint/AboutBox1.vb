@@ -23,4 +23,8 @@
         Me.Close()
     End Sub
 
+    Private Sub LicenseButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LicenseButton.Click
+        Dim LicenseForm As LicenseForm1 = LicenseForm1
+        LicenseForm.Show()
+    End Sub
 End Class
