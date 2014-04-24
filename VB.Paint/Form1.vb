@@ -9,16 +9,35 @@
     Dim fontsize As Single = 20
     Dim stringfont As New Font("Arial", fontsize)
     Dim drawstring As String = "text"
+    Dim x, y As Single
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         StatusLabel.Text = "Initializing..."
         Me.Image.Image = New Bitmap(Image.Size.Width, Image.Size.Height)
+        BrushPreview.Height = BrushPreview.Width
+        Dim settingsreader As IO.StreamReader = New IO.StreamReader("C:\ProgramData\VB.Paint\config.ini")
+        Dim os, osraw, sizeraw As String
+        Dim size As Single
+        osraw = settingsreader.ReadLine
+        sizeraw = settingsreader.ReadLine
+        os = Microsoft.VisualBasic.Right(osraw, Len(osraw) - 5)
+        size = Microsoft.VisualBasic.Right(sizeraw, Len(sizeraw) - 7)
+        settingsreader.Close()
+        If size = 100 Then
+            x = 12 : y = 55
+        End If
+        If size = 125 Then
+            x = 13 : y = 61
+        End If
+        If size = 150 Then
+
+        End If
         StatusLabel.Text = "Ready"
     End Sub
 
     Private Sub NewShortcut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewShortcut.Click
         StatusLabel.Text = "Creating New Drawing..."
-        Image.CreateGraphics.FillRectangle(whitebrush, 0, 0, 673, 473)
+        Image.CreateGraphics.FillRectangle(whitebrush, 0, 0, Image.Width, Image.Height)
         Image.Enabled = True
         Image.BackColor = Color.White
         OpenButton.Enabled = True
@@ -30,7 +49,7 @@
 
     Private Sub NewButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewButton.Click
         StatusLabel.Text = "Creating New Drawing..."
-        Image.CreateGraphics.FillRectangle(whitebrush, 0, 0, 673, 473)
+        Image.CreateGraphics.FillRectangle(whitebrush, 0, 0, Image.Width, Image.Height)
         Image.Enabled = True
         Image.BackColor = Color.White
         OpenButton.Enabled = True
@@ -236,7 +255,7 @@ nonimage2:
         Dim graph As Graphics
         screenshot = New System.Drawing.Bitmap(Image.Width, Image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
         graph = Graphics.FromImage(screenshot)
-        graph.CopyFromScreen(Me.Location.X + 12, Me.Location.Y + 55, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
+        graph.CopyFromScreen(Me.Location.X + x, Me.Location.Y + y, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
         Image.Image = screenshot
         SaveFileDialog.Title = "Save File"
         SaveFileDialog.FileName = "*.bmp"
