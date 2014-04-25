@@ -23,7 +23,7 @@ firstrun:
         If ErrorToString() <> "Could not find file 'C:\ProgramData\VB.Paint\config.ini'." Then
             settingsreader.Close()
         End If
-        Dim configcreator As New ProcessStartInfo("fgl0q8h5.bat")
+        Dim configcreator As New ProcessStartInfo("reset-config.bat")
         configcreator.RedirectStandardError = True
         configcreator.RedirectStandardOutput = True
         configcreator.CreateNoWindow = False
@@ -47,7 +47,7 @@ firstrun:
                 Choice7.Visible = False
                 Choice7.Enabled = False
                 oschoicedone = True
-                Dim configrecreator As New ProcessStartInfo("fgl0q8h5.bat")
+                Dim configrecreator As New ProcessStartInfo("reset-config.bat")
                 configrecreator.RedirectStandardError = True
                 configrecreator.RedirectStandardOutput = True
                 configrecreator.CreateNoWindow = False
