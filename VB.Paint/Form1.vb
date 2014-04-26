@@ -23,14 +23,16 @@
         os = Microsoft.VisualBasic.Right(osraw, Len(osraw) - 5)
         size = Microsoft.VisualBasic.Right(sizeraw, Len(sizeraw) - 7)
         settingsreader.Close()
-        If size = 100 Then
-            x = 12 : y = 55
+        If os = "xp" Then
+            x = 12 : y = 58
         End If
-        If size = 125 Then
-            x = 13 : y = 61
-        End If
-        If size = 150 Then
-
+        If os = "7" Then
+            If size = 100 Then
+                x = 12 : y = 55
+            End If
+            If size = 125 Then
+                x = 13 : y = 61
+            End If
         End If
         StatusLabel.Text = "Ready"
     End Sub
