@@ -13,7 +13,7 @@
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         StatusLabel.Text = "Initializing..."
-        Me.Image.Image = New Bitmap(Image.Size.Width, Image.Size.Height)
+        Me.Image.Image = New Bitmap(Image.Width, Image.Height)
         BrushPreview.Height = BrushPreview.Width
         Dim settingsreader As IO.StreamReader = New IO.StreamReader("C:\ProgramData\VB.Paint\config.ini")
         Dim os, osraw, sizeraw As String
@@ -28,7 +28,7 @@
         End If
         If os = "7" Then
             If size = 100 Then
-                x = 12 : y = 55
+                x = 15 : y = 58
             End If
             If size = 125 Then
                 x = 13 : y = 61
@@ -70,7 +70,6 @@
         End If
         pensize = BrushSize.Text
         fontsize = BrushSize.Text
-        stringfont = New Font("Arial", fontsize)
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
         coord = (BrushPreview.Size.Width - pensize) / 2
         If shape = "o" Then
@@ -271,7 +270,7 @@ nonimage2:
         Dim graph As Graphics
         screenshot = New System.Drawing.Bitmap(Image.Width, Image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
         graph = Graphics.FromImage(screenshot)
-        graph.CopyFromScreen(Me.Location.X + 12, Me.Location.Y + 55, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
+        graph.CopyFromScreen(Me.Location.X + x, Me.Location.Y + y, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
         Image.Image = screenshot
         SaveFileDialog.Title = "Save File"
         SaveFileDialog.FileName = "*.bmp"
@@ -471,5 +470,21 @@ rgbnotfound:
             BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, 0, 0)
         End If
         StatusLabel.Text = "Ready"
+    End Sub
+
+    Private Sub MainWindow_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
+        If Me.Width < 722 Then Me.Width = 722
+        If Me.Height < 475 Then Me.Height = 475
+        PaintToolsPanel.Location = New Point(Me.Size.Width - 202, -3)
+        PaintToolsPanel.Height = Me.Height + 10
+        CloseShortcut.Location = New Point(PaintToolsPanel.Location.X - 24, 0)
+        SaveShortcut.Location = New Point(CloseShortcut.Location.X - 23, 0)
+        OpenShortcut.Location = New Point(SaveShortcut.Location.X - 23, 0)
+        NewShortcut.Location = New Point(OpenShortcut.Location.X - 23, 0)
+        PictureBoxBackground.Width = Me.Width - 183
+        PictureBoxBackground.Height = Me.Height - 68
+        Image.Width = Me.Width - 217 : Image.Height = Me.Height - 91
+        Me.Image.Image = Nothing
+        'Me.Image.Image = New Bitmap(Image.Width, Image.Height)
     End Sub
 End Class

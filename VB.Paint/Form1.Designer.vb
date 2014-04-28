@@ -25,9 +25,8 @@ Partial Class MainWindow
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainWindow))
         Me.NewShortcut = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
-        Me.VerticalDivider = New System.Windows.Forms.Panel
-        Me.HorizontalDivider = New System.Windows.Forms.Panel
         Me.PaintToolsPanel = New System.Windows.Forms.Panel
+        Me.FontButton = New System.Windows.Forms.Button
         Me.TextToDrawBox = New System.Windows.Forms.TextBox
         Me.Label4 = New System.Windows.Forms.Label
         Me.BrushShapeToTextButton = New System.Windows.Forms.Button
@@ -61,7 +60,6 @@ Partial Class MainWindow
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog
         Me.SaveShortcut = New System.Windows.Forms.Button
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog
-        Me.FontButton = New System.Windows.Forms.Button
         Me.FontDialog = New System.Windows.Forms.FontDialog
         Me.PaintToolsPanel.SuspendLayout()
         CType(Me.Blue, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,24 +92,6 @@ Partial Class MainWindow
         Me.Label5.TabIndex = 13
         Me.Label5.Text = "Preview Brush:"
         '
-        'VerticalDivider
-        '
-        Me.VerticalDivider.BackColor = System.Drawing.Color.Black
-        Me.VerticalDivider.Location = New System.Drawing.Point(519, -3)
-        Me.VerticalDivider.Margin = New System.Windows.Forms.Padding(2)
-        Me.VerticalDivider.Name = "VerticalDivider"
-        Me.VerticalDivider.Size = New System.Drawing.Size(1, 436)
-        Me.VerticalDivider.TabIndex = 10
-        '
-        'HorizontalDivider
-        '
-        Me.HorizontalDivider.BackColor = System.Drawing.Color.Black
-        Me.HorizontalDivider.Location = New System.Drawing.Point(-3, 19)
-        Me.HorizontalDivider.Margin = New System.Windows.Forms.Padding(2)
-        Me.HorizontalDivider.Name = "HorizontalDivider"
-        Me.HorizontalDivider.Size = New System.Drawing.Size(523, 1)
-        Me.HorizontalDivider.TabIndex = 15
-        '
         'PaintToolsPanel
         '
         Me.PaintToolsPanel.BackColor = System.Drawing.Color.White
@@ -135,6 +115,16 @@ Partial Class MainWindow
         Me.PaintToolsPanel.Name = "PaintToolsPanel"
         Me.PaintToolsPanel.Size = New System.Drawing.Size(193, 450)
         Me.PaintToolsPanel.TabIndex = 14
+        '
+        'FontButton
+        '
+        Me.FontButton.Location = New System.Drawing.Point(61, 70)
+        Me.FontButton.Name = "FontButton"
+        Me.FontButton.Size = New System.Drawing.Size(63, 25)
+        Me.FontButton.TabIndex = 23
+        Me.FontButton.Text = "Text Font"
+        Me.FontButton.UseVisualStyleBackColor = True
+        Me.FontButton.Visible = False
         '
         'TextToDrawBox
         '
@@ -495,16 +485,6 @@ Partial Class MainWindow
         Me.SaveShortcut.TabIndex = 20
         Me.SaveShortcut.UseVisualStyleBackColor = True
         '
-        'FontButton
-        '
-        Me.FontButton.Location = New System.Drawing.Point(61, 70)
-        Me.FontButton.Name = "FontButton"
-        Me.FontButton.Size = New System.Drawing.Size(63, 25)
-        Me.FontButton.TabIndex = 23
-        Me.FontButton.Text = "Text Font"
-        Me.FontButton.UseVisualStyleBackColor = True
-        Me.FontButton.Visible = False
-        '
         'MainWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -517,15 +497,12 @@ Partial Class MainWindow
         Me.Controls.Add(Me.PaintToolsPanel)
         Me.Controls.Add(Me.MenuStrip)
         Me.Controls.Add(Me.StatusStrip)
-        Me.Controls.Add(Me.VerticalDivider)
-        Me.Controls.Add(Me.HorizontalDivider)
         Me.Controls.Add(Me.Image)
         Me.Controls.Add(Me.PictureBoxBackground)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.MaximizeBox = False
         Me.Name = "MainWindow"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "VB.Paint"
         Me.PaintToolsPanel.ResumeLayout(False)
         Me.PaintToolsPanel.PerformLayout()
@@ -544,8 +521,6 @@ Partial Class MainWindow
     End Sub
     Friend WithEvents NewShortcut As System.Windows.Forms.Button
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents VerticalDivider As System.Windows.Forms.Panel
-    Friend WithEvents HorizontalDivider As System.Windows.Forms.Panel
     Friend WithEvents PaintToolsPanel As System.Windows.Forms.Panel
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents BrushPreview As System.Windows.Forms.PictureBox
