@@ -61,6 +61,8 @@ Partial Class MainWindow
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog
         Me.SaveShortcut = New System.Windows.Forms.Button
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog
+        Me.FontButton = New System.Windows.Forms.Button
+        Me.FontDialog = New System.Windows.Forms.FontDialog
         Me.PaintToolsPanel.SuspendLayout()
         CType(Me.Blue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Green, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,7 +87,7 @@ Partial Class MainWindow
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(10, 226)
+        Me.Label5.Location = New System.Drawing.Point(11, 217)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(78, 13)
@@ -113,6 +115,7 @@ Partial Class MainWindow
         'PaintToolsPanel
         '
         Me.PaintToolsPanel.BackColor = System.Drawing.Color.White
+        Me.PaintToolsPanel.Controls.Add(Me.FontButton)
         Me.PaintToolsPanel.Controls.Add(Me.TextToDrawBox)
         Me.PaintToolsPanel.Controls.Add(Me.Label4)
         Me.PaintToolsPanel.Controls.Add(Me.BrushShapeToTextButton)
@@ -136,7 +139,7 @@ Partial Class MainWindow
         'TextToDrawBox
         '
         Me.TextToDrawBox.Enabled = False
-        Me.TextToDrawBox.Location = New System.Drawing.Point(39, 180)
+        Me.TextToDrawBox.Location = New System.Drawing.Point(39, 178)
         Me.TextToDrawBox.Margin = New System.Windows.Forms.Padding(2)
         Me.TextToDrawBox.Name = "TextToDrawBox"
         Me.TextToDrawBox.Size = New System.Drawing.Size(136, 20)
@@ -159,7 +162,7 @@ Partial Class MainWindow
         '
         Me.BrushShapeToTextButton.BackgroundImage = CType(resources.GetObject("BrushShapeToTextButton.BackgroundImage"), System.Drawing.Image)
         Me.BrushShapeToTextButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.BrushShapeToTextButton.Location = New System.Drawing.Point(135, 26)
+        Me.BrushShapeToTextButton.Location = New System.Drawing.Point(134, 26)
         Me.BrushShapeToTextButton.Margin = New System.Windows.Forms.Padding(2)
         Me.BrushShapeToTextButton.Name = "BrushShapeToTextButton"
         Me.BrushShapeToTextButton.Size = New System.Drawing.Size(25, 25)
@@ -248,7 +251,7 @@ Partial Class MainWindow
         'BrushPreview
         '
         Me.BrushPreview.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BrushPreview.Location = New System.Drawing.Point(10, 245)
+        Me.BrushPreview.Location = New System.Drawing.Point(11, 236)
         Me.BrushPreview.Margin = New System.Windows.Forms.Padding(2)
         Me.BrushPreview.Name = "BrushPreview"
         Me.BrushPreview.Size = New System.Drawing.Size(166, 166)
@@ -492,6 +495,16 @@ Partial Class MainWindow
         Me.SaveShortcut.TabIndex = 20
         Me.SaveShortcut.UseVisualStyleBackColor = True
         '
+        'FontButton
+        '
+        Me.FontButton.Location = New System.Drawing.Point(61, 70)
+        Me.FontButton.Name = "FontButton"
+        Me.FontButton.Size = New System.Drawing.Size(63, 25)
+        Me.FontButton.TabIndex = 23
+        Me.FontButton.Text = "Text Font"
+        Me.FontButton.UseVisualStyleBackColor = True
+        Me.FontButton.Visible = False
+        '
         'MainWindow
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -567,4 +580,6 @@ Partial Class MainWindow
     Friend WithEvents BrushShapeToTextButton As System.Windows.Forms.Button
     Friend WithEvents TextToDrawBox As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents FontButton As System.Windows.Forms.Button
+    Friend WithEvents FontDialog As System.Windows.Forms.FontDialog
 End Class

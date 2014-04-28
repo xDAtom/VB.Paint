@@ -79,9 +79,6 @@
         If shape = "[]" Then
             BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
         End If
-        If shape = "ß" Then
-            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, 0, 0)
-        End If
         StatusLabel.Text = "Ready"
         Exit Sub
 brushsizehandler:
@@ -388,7 +385,9 @@ rgbnotfound:
     Private Sub BrushShapeToCircleButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushShapeToCircleButton.Click
         StatusLabel.Text = "Changing Brush Shape..."
         shape = "o"
-        Label2.Text = "Brush Size:"
+        Label2.Visible = True
+        BrushSize.Visible = True
+        FontButton.Visible = False
         Label3.Text = "Brush Color:"
         Label4.Visible = False
         TextToDrawBox.Visible = False
@@ -408,7 +407,9 @@ rgbnotfound:
     Private Sub BrushShapeToSquareButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushShapeToSquareButton.Click
         StatusLabel.Text = "Changing Brush Shape..."
         shape = "[]"
-        Label2.Text = "Brush Size:"
+        Label2.Visible = True
+        BrushSize.Visible = True
+        FontButton.Visible = False
         Label3.Text = "Brush Color:"
         Label4.Visible = False
         TextToDrawBox.Visible = False
@@ -428,7 +429,9 @@ rgbnotfound:
     Private Sub BrushShapeToTextButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushShapeToTextButton.Click
         StatusLabel.Text = "Changing Brush Shape..."
         shape = "ß"
-        Label2.Text = "  Font Size:"
+        Label2.Visible = False
+        BrushSize.Visible = False
+        FontButton.Visible = True
         Label3.Text = "  Text Color:"
         Label4.Visible = True
         TextToDrawBox.Enabled = True
@@ -447,6 +450,20 @@ rgbnotfound:
     Private Sub TextToDrawBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextToDrawBox.TextChanged
         StatusLabel.Text = "Changing Text to Draw..."
         drawstring = TextToDrawBox.Text
+        If shape = "ß" Then
+            Dim pensize As Single
+            pensize = BrushSize.Text
+            BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+            BrushPreview.CreateGraphics.DrawString(drawstring, stringfont, brush, 0, 0)
+        End If
+        StatusLabel.Text = "Ready"
+    End Sub
+
+    Private Sub FontButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FontButton.Click
+        StatusLabel.Text = "Changing Font..."
+        If FontDialog.ShowDialog() = Windows.Forms.DialogResult.OK Then
+            stringfont = FontDialog.Font
+        End If
         If shape = "ß" Then
             Dim pensize As Single
             pensize = BrushSize.Text
