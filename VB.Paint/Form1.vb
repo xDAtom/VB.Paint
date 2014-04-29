@@ -26,6 +26,9 @@
         If os = "xp" Then
             x = 12 : y = 58
         End If
+        If os = "vista" Then
+            x = 12 : y = 56
+        End If
         If os = "7" Then
             If size = 100 Then
                 x = 15 : y = 58
@@ -485,6 +488,5 @@ rgbnotfound:
         PictureBoxBackground.Height = Me.Height - 68
         Image.Width = Me.Width - 217 : Image.Height = Me.Height - 91
         Me.Image.Image = Nothing
-        'Me.Image.Image = New Bitmap(Image.Width, Image.Height)
     End Sub
 End Class

@@ -10,7 +10,7 @@ start:
         os = Microsoft.VisualBasic.Right(osraw, Len(osraw) - 5)
         size = Microsoft.VisualBasic.Right(sizeraw, Len(sizeraw) - 7)
         settingsreader.Close()
-        If os <> "xp" And os <> "7" Then
+        If os <> "xp" And os <> "vista" And os <> "7" Then
             Exit Sub
         End If
         If size <> 100 And size <> 125 Then
@@ -44,6 +44,8 @@ firstrun:
             If ChoiceXP.Checked = True Then
                 ChoiceXP.Visible = False
                 ChoiceXP.Enabled = False
+                ChoiceVista.Visible = False
+                ChoiceVista.Enabled = False
                 Choice7.Visible = False
                 Choice7.Enabled = False
                 oschoicedone = True
@@ -67,9 +69,39 @@ firstrun:
                 ConfirmButton.Enabled = False
                 Exit Sub
             End If
+            If ChoiceVista.Checked = True Then
+                ChoiceXP.Visible = False
+                ChoiceXP.Enabled = False
+                ChoiceVista.Visible = False
+                ChoiceVista.Enabled = False
+                Choice7.Visible = False
+                Choice7.Enabled = False
+                oschoicedone = True
+                Dim configrecreator As New ProcessStartInfo("reset-config.bat")
+                configrecreator.RedirectStandardError = True
+                configrecreator.RedirectStandardOutput = True
+                configrecreator.CreateNoWindow = False
+                configrecreator.WindowStyle = ProcessWindowStyle.Hidden
+                configrecreator.UseShellExecute = False
+                System.Diagnostics.Process.Start(configrecreator)
+                Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
+                configwriter.WriteLine("os = vista")
+                configwriter.WriteLine("size = 100")
+                configwriter.Close()
+                DoneButton.Enabled = True
+                DoneButton.Visible = True
+                Label1.Text = "You're good to go!"
+                Label2.Text = "You've successfully set up VB.Paint."
+                Label3.Text = "Click the button below to start using it."
+                ConfirmButton.Visible = False
+                ConfirmButton.Enabled = False
+                Exit Sub
+            End If
             If Choice7.Checked = True Then
                 ChoiceXP.Visible = False
                 ChoiceXP.Enabled = False
+                ChoiceVista.Visible = False
+                ChoiceVista.Enabled = False
                 Choice7.Visible = False
                 Choice7.Enabled = False
                 ChoiceSize100.Enabled = True

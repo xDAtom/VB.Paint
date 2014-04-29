@@ -35,6 +35,7 @@ Partial Class FirstTimeSetupForm1
         Me.ChoiceSize125 = New System.Windows.Forms.RadioButton
         Me.SizeInstructButton = New System.Windows.Forms.Button
         Me.BackButton = New System.Windows.Forms.Button
+        Me.ChoiceVista = New System.Windows.Forms.RadioButton
         Me.SuspendLayout()
         '
         'Label1
@@ -67,18 +68,18 @@ Partial Class FirstTimeSetupForm1
         'Choice7
         '
         Me.Choice7.AutoSize = True
-        Me.Choice7.Location = New System.Drawing.Point(13, 147)
+        Me.Choice7.Location = New System.Drawing.Point(13, 154)
         Me.Choice7.Name = "Choice7"
-        Me.Choice7.Size = New System.Drawing.Size(137, 17)
+        Me.Choice7.Size = New System.Drawing.Size(109, 17)
         Me.Choice7.TabIndex = 3
         Me.Choice7.TabStop = True
-        Me.Choice7.Text = "Windows Vista/7/8/8.1"
+        Me.Choice7.Text = "Windows 7/8/8.1"
         Me.Choice7.UseVisualStyleBackColor = True
         '
         'ChoiceXP
         '
         Me.ChoiceXP.AutoSize = True
-        Me.ChoiceXP.Location = New System.Drawing.Point(13, 124)
+        Me.ChoiceXP.Location = New System.Drawing.Point(13, 114)
         Me.ChoiceXP.Name = "ChoiceXP"
         Me.ChoiceXP.Size = New System.Drawing.Size(86, 17)
         Me.ChoiceXP.TabIndex = 4
@@ -111,7 +112,7 @@ Partial Class FirstTimeSetupForm1
         '
         Me.ChoiceSize150.AutoSize = True
         Me.ChoiceSize150.Enabled = False
-        Me.ChoiceSize150.Location = New System.Drawing.Point(13, 155)
+        Me.ChoiceSize150.Location = New System.Drawing.Point(13, 154)
         Me.ChoiceSize150.Name = "ChoiceSize150"
         Me.ChoiceSize150.Size = New System.Drawing.Size(51, 17)
         Me.ChoiceSize150.TabIndex = 7
@@ -169,6 +170,17 @@ Partial Class FirstTimeSetupForm1
         Me.BackButton.UseVisualStyleBackColor = True
         Me.BackButton.Visible = False
         '
+        'ChoiceVista
+        '
+        Me.ChoiceVista.AutoSize = True
+        Me.ChoiceVista.Location = New System.Drawing.Point(13, 134)
+        Me.ChoiceVista.Name = "ChoiceVista"
+        Me.ChoiceVista.Size = New System.Drawing.Size(95, 17)
+        Me.ChoiceVista.TabIndex = 12
+        Me.ChoiceVista.TabStop = True
+        Me.ChoiceVista.Text = "Windows Vista"
+        Me.ChoiceVista.UseVisualStyleBackColor = True
+        '
         'FirstTimeSetupForm1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -186,6 +198,7 @@ Partial Class FirstTimeSetupForm1
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.ChoiceVista)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -207,4 +220,5 @@ Partial Class FirstTimeSetupForm1
     Friend WithEvents ChoiceSize125 As System.Windows.Forms.RadioButton
     Friend WithEvents SizeInstructButton As System.Windows.Forms.Button
     Friend WithEvents BackButton As System.Windows.Forms.Button
+    Friend WithEvents ChoiceVista As System.Windows.Forms.RadioButton
 End Class
