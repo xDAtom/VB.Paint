@@ -49,13 +49,15 @@ firstrun:
                 Choice7.Visible = False
                 Choice7.Enabled = False
                 oschoicedone = True
-                Dim configrecreator As New ProcessStartInfo("reset-config.bat")
-                configrecreator.RedirectStandardError = True
-                configrecreator.RedirectStandardOutput = True
-                configrecreator.CreateNoWindow = False
-                configrecreator.WindowStyle = ProcessWindowStyle.Hidden
-                configrecreator.UseShellExecute = False
-                System.Diagnostics.Process.Start(configrecreator)
+                Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
+                configrecreatordata.RedirectStandardError = True
+                configrecreatordata.RedirectStandardOutput = True
+                configrecreatordata.CreateNoWindow = False
+                configrecreatordata.WindowStyle = ProcessWindowStyle.Hidden
+                configrecreatordata.UseShellExecute = False
+                configrecreator.StartInfo = configrecreatordata
+                configrecreator.Start()
+                configrecreator.WaitForExit()
                 Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
                 configwriter.WriteLine("os = xp")
                 configwriter.WriteLine("size = 100")
@@ -77,13 +79,15 @@ firstrun:
                 Choice7.Visible = False
                 Choice7.Enabled = False
                 oschoicedone = True
-                Dim configrecreator As New ProcessStartInfo("reset-config.bat")
-                configrecreator.RedirectStandardError = True
-                configrecreator.RedirectStandardOutput = True
-                configrecreator.CreateNoWindow = False
-                configrecreator.WindowStyle = ProcessWindowStyle.Hidden
-                configrecreator.UseShellExecute = False
-                System.Diagnostics.Process.Start(configrecreator)
+                Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
+                configrecreatordata.RedirectStandardError = True
+                configrecreatordata.RedirectStandardOutput = True
+                configrecreatordata.CreateNoWindow = False
+                configrecreatordata.WindowStyle = ProcessWindowStyle.Hidden
+                configrecreatordata.UseShellExecute = False
+                configrecreator.StartInfo = configrecreatordata
+                configrecreator.Start()
+                configrecreator.WaitForExit()
                 Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
                 configwriter.WriteLine("os = vista")
                 configwriter.WriteLine("size = 100")
@@ -130,6 +134,15 @@ firstrun:
                 ChoiceSize150.Enabled = False
                 SizeInstructButton.Visible = False
                 SizeInstructButton.Enabled = False
+                Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
+                configrecreatordata.RedirectStandardError = True
+                configrecreatordata.RedirectStandardOutput = True
+                configrecreatordata.CreateNoWindow = False
+                configrecreatordata.WindowStyle = ProcessWindowStyle.Hidden
+                configrecreatordata.UseShellExecute = False
+                configrecreator.StartInfo = configrecreatordata
+                configrecreator.Start()
+                configrecreator.WaitForExit()
                 Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
                 configwriter.WriteLine("os = 7")
                 configwriter.WriteLine("size = 100")
@@ -154,6 +167,15 @@ firstrun:
                 SizeInstructButton.Enabled = False
                 DoneButton.Enabled = True
                 DoneButton.Visible = True
+                Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
+                configrecreatordata.RedirectStandardError = True
+                configrecreatordata.RedirectStandardOutput = True
+                configrecreatordata.CreateNoWindow = False
+                configrecreatordata.WindowStyle = ProcessWindowStyle.Hidden
+                configrecreatordata.UseShellExecute = False
+                configrecreator.StartInfo = configrecreatordata
+                configrecreator.Start()
+                configrecreator.WaitForExit()
                 Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
                 configwriter.WriteLine("os = 7")
                 configwriter.WriteLine("size = 125")
@@ -213,5 +235,9 @@ firstrun:
         Label3.Text = "Please check the setting and make the same below:"
         BackButton.Visible = False
         BackButton.Enabled = False
+    End Sub
+
+    Private Sub Process1_Exited(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
     End Sub
 End Class

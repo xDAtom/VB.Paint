@@ -203,6 +203,7 @@ Partial Class FirstTimeSetupForm1
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.Name = "FirstTimeSetupForm1"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "VB.Paint Setup"
         Me.ResumeLayout(False)
         Me.PerformLayout()
