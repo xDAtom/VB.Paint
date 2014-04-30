@@ -30,7 +30,7 @@
             x = 15 : y = 58
         End If
         If os = "8/8.1" Then
-            x = 15 : y = 57
+            x = 15 : y = 59
         End If
         StatusLabel.Text = "Ready"
     End Sub
