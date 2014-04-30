@@ -27,7 +27,7 @@
             x = 13 : y = 58
         End If
         If os = "vista" Then
-            x = 14 : y = 56
+            x = 13 : y = 56
         End If
         If os = "7" Then
             If size = 100 Then
