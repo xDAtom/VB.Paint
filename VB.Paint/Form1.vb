@@ -24,10 +24,10 @@
         size = Microsoft.VisualBasic.Right(sizeraw, Len(sizeraw) - 7)
         settingsreader.Close()
         If os = "xp" Then
-            x = 12 : y = 58
+            x = 13 : y = 58
         End If
         If os = "vista" Then
-            x = 10 : y = 56
+            x = 14 : y = 56
         End If
         If os = "7" Then
             If size = 100 Then
