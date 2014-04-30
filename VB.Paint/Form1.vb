@@ -16,12 +16,9 @@
         Me.Image.Image = New Bitmap(Image.Width, Image.Height)
         BrushPreview.Height = BrushPreview.Width
         Dim settingsreader As IO.StreamReader = New IO.StreamReader("C:\ProgramData\VB.Paint\config.ini")
-        Dim os, osraw, sizeraw As String
-        Dim size As Single
+        Dim os, osraw As String
         osraw = settingsreader.ReadLine
-        sizeraw = settingsreader.ReadLine
         os = Microsoft.VisualBasic.Right(osraw, Len(osraw) - 5)
-        size = Microsoft.VisualBasic.Right(sizeraw, Len(sizeraw) - 7)
         settingsreader.Close()
         If os = "xp" Then
             x = 13 : y = 58
@@ -30,12 +27,7 @@
             x = 15 : y = 56
         End If
         If os = "7" Then
-            If size = 100 Then
-                x = 15 : y = 58
-            End If
-            If size = 125 Then
-                x = 13 : y = 61
-            End If
+            x = 15 : y = 58
         End If
         StatusLabel.Text = "Ready"
     End Sub

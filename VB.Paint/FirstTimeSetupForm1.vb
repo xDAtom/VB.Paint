@@ -3,17 +3,11 @@
 start:
         On Error GoTo firstrun
         Dim settingsreader As IO.StreamReader = New IO.StreamReader("C:\ProgramData\VB.Paint\config.ini")
-        Dim os, osraw, sizeraw As String
-        Dim size As Single
+        Dim os, osraw As String
         osraw = settingsreader.ReadLine
-        sizeraw = settingsreader.ReadLine
         os = Microsoft.VisualBasic.Right(osraw, Len(osraw) - 5)
-        size = Microsoft.VisualBasic.Right(sizeraw, Len(sizeraw) - 7)
         settingsreader.Close()
         If os <> "xp" And os <> "vista" And os <> "7" Then
-            Exit Sub
-        End If
-        If size <> 100 And size <> 125 Then
             Exit Sub
         End If
         MainWindow.Show()
@@ -23,16 +17,17 @@ firstrun:
         If ErrorToString() <> "Could not find file 'C:\ProgramData\VB.Paint\config.ini'." Then
             settingsreader.Close()
         End If
-        Dim configcreator As New ProcessStartInfo("reset-config.bat")
-        configcreator.RedirectStandardError = True
-        configcreator.RedirectStandardOutput = True
-        configcreator.CreateNoWindow = False
-        configcreator.WindowStyle = ProcessWindowStyle.Hidden
-        configcreator.UseShellExecute = False
-        System.Diagnostics.Process.Start(configcreator)
+        Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
+        configrecreatordata.RedirectStandardError = True
+        configrecreatordata.RedirectStandardOutput = True
+        configrecreatordata.CreateNoWindow = False
+        configrecreatordata.WindowStyle = ProcessWindowStyle.Hidden
+        configrecreatordata.UseShellExecute = False
+        configrecreator.StartInfo = configrecreatordata
+        configrecreator.Start()
+        configrecreator.WaitForExit()
         Dim firstrunconfigwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
         firstrunconfigwriter.WriteLine("os = null")
-        firstrunconfigwriter.WriteLine("size = 100")
         firstrunconfigwriter.Close()
         GoTo start
     End Sub
@@ -60,7 +55,6 @@ firstrun:
                 configrecreator.WaitForExit()
                 Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
                 configwriter.WriteLine("os = xp")
-                configwriter.WriteLine("size = 100")
                 configwriter.Close()
                 DoneButton.Enabled = True
                 DoneButton.Visible = True
@@ -90,7 +84,6 @@ firstrun:
                 configrecreator.WaitForExit()
                 Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
                 configwriter.WriteLine("os = vista")
-                configwriter.WriteLine("size = 100")
                 configwriter.Close()
                 DoneButton.Enabled = True
                 DoneButton.Visible = True
@@ -165,24 +158,11 @@ firstrun:
                 ChoiceSize150.Enabled = False
                 SizeInstructButton.Visible = False
                 SizeInstructButton.Enabled = False
-                DoneButton.Enabled = True
-                DoneButton.Visible = True
-                Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
-                configrecreatordata.RedirectStandardError = True
-                configrecreatordata.RedirectStandardOutput = True
-                configrecreatordata.CreateNoWindow = False
-                configrecreatordata.WindowStyle = ProcessWindowStyle.Hidden
-                configrecreatordata.UseShellExecute = False
-                configrecreator.StartInfo = configrecreatordata
-                configrecreator.Start()
-                configrecreator.WaitForExit()
-                Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
-                configwriter.WriteLine("os = 7")
-                configwriter.WriteLine("size = 125")
-                configwriter.Close()
-                Label1.Text = "You're good to go!"
-                Label2.Text = "You've successfully set up VB.Paint."
-                Label3.Text = "Click the button below to start using it."
+                BackButton.Enabled = True
+                BackButton.Visible = True
+                Label1.Text = "Sorry, but you cannot use VB.Paint on this setup."
+                Label2.Text = "Please set the Display Size to 100%."
+                Label3.Text = ""
                 ConfirmButton.Visible = False
                 ConfirmButton.Enabled = False
                 Exit Sub
@@ -199,7 +179,7 @@ firstrun:
                 BackButton.Enabled = True
                 BackButton.Visible = True
                 Label1.Text = "Sorry, but you cannot use VB.Paint on this setup."
-                Label2.Text = "Please set the Display Size to 100% or 125%."
+                Label2.Text = "Please set the Display Size to 100%."
                 Label3.Text = ""
                 ConfirmButton.Visible = False
                 ConfirmButton.Enabled = False
