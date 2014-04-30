@@ -32,10 +32,10 @@ firstrun:
         GoTo start
     End Sub
 
-    Dim oschoicedone As Boolean
+    Dim oschoice As Single
 
     Private Sub ConfirmButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConfirmButton.Click
-        If oschoicedone = False Then
+        If oschoice = 0 Then
             If ChoiceXP.Checked = True Then
                 ChoiceXP.Visible = False
                 ChoiceXP.Enabled = False
@@ -43,7 +43,9 @@ firstrun:
                 ChoiceVista.Enabled = False
                 Choice7.Visible = False
                 Choice7.Enabled = False
-                oschoicedone = True
+                Choice8.Visible = False
+                Choice8.Enabled = False
+                oschoice = 1
                 Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
                 configrecreatordata.RedirectStandardError = True
                 configrecreatordata.RedirectStandardOutput = True
@@ -72,7 +74,9 @@ firstrun:
                 ChoiceVista.Enabled = False
                 Choice7.Visible = False
                 Choice7.Enabled = False
-                oschoicedone = True
+                Choice8.Visible = False
+                Choice8.Enabled = False
+                oschoice = 2
                 Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
                 configrecreatordata.RedirectStandardError = True
                 configrecreatordata.RedirectStandardOutput = True
@@ -101,6 +105,8 @@ firstrun:
                 ChoiceVista.Enabled = False
                 Choice7.Visible = False
                 Choice7.Enabled = False
+                Choice8.Visible = False
+                Choice8.Enabled = False
                 ChoiceSize100.Enabled = True
                 ChoiceSize100.Visible = True
                 ChoiceSize125.Enabled = True
@@ -109,14 +115,37 @@ firstrun:
                 ChoiceSize150.Visible = True
                 SizeInstructButton.Enabled = True
                 SizeInstructButton.Visible = True
-                oschoicedone = True
+                oschoice = 3
                 Label1.Text = "Have you been messing with the Display Size function?"
                 Label2.Text = ""
                 Label3.Text = "Please check the setting and make the same below:"
                 Exit Sub
             End If
-            MsgBox("You have not selected an option yet.", MsgBoxStyle.SystemModal, "Error")
-            Exit Sub
+            If Choice8.Checked = True Then
+                ChoiceXP.Visible = False
+                ChoiceXP.Enabled = False
+                ChoiceVista.Visible = False
+                ChoiceVista.Enabled = False
+                Choice7.Visible = False
+                Choice7.Enabled = False
+                Choice8.Visible = False
+                Choice8.Enabled = False
+                ChoiceSize100.Enabled = True
+                ChoiceSize100.Visible = True
+                ChoiceSize125.Enabled = True
+                ChoiceSize125.Visible = True
+                ChoiceSize150.Enabled = True
+                ChoiceSize150.Visible = True
+                SizeInstructButton.Enabled = True
+                SizeInstructButton.Visible = True
+                oschoice = 4
+                Label1.Text = "Have you been messing with the Display Size function?"
+                Label2.Text = ""
+                Label3.Text = "Please check the setting and make the same below:"
+                Exit Sub
+                MsgBox("You have not selected an option yet.", MsgBoxStyle.SystemModal, "Error")
+                Exit Sub
+            End If
         Else
             If ChoiceSize100.Checked = True Then
                 ChoiceSize100.Visible = False
@@ -137,8 +166,12 @@ firstrun:
                 configrecreator.Start()
                 configrecreator.WaitForExit()
                 Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
-                configwriter.WriteLine("os = 7")
-                configwriter.WriteLine("size = 100")
+                If oschoice = 3 Then
+                    configwriter.WriteLine("os = 7")
+                End If
+                If oschoice = 4 Then
+                    configwriter.WriteLine("os = 8/8.1")
+                End If
                 configwriter.Close()
                 DoneButton.Enabled = True
                 DoneButton.Visible = True
