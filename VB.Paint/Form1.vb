@@ -10,16 +10,17 @@
     Dim stringfont As New Font("Arial", fontsize)
     Dim drawstring As String = "text"
     Dim x, y As Single
+    Public os As String = FirstTimeSetupForm1.os
+    Dim resizewarning As Boolean = True
+    Dim resizewarningresult As MsgBoxResult
+    Dim resscreenshot As Bitmap
+    Dim resgraph As Graphics
+    Dim maximized As Boolean = False
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         StatusLabel.Text = "Initializing..."
         Me.Image.Image = New Bitmap(Image.Width, Image.Height)
         BrushPreview.Height = BrushPreview.Width
-        Dim settingsreader As IO.StreamReader = New IO.StreamReader("C:\ProgramData\VB.Paint\config.ini")
-        Dim os, osraw As String
-        osraw = settingsreader.ReadLine
-        os = Microsoft.VisualBasic.Right(osraw, Len(osraw) - 5)
-        settingsreader.Close()
         If os = "xp" Then
             x = 13 : y = 58
         End If
@@ -67,7 +68,6 @@
             BrushSize.Text = "1"
         End If
         pensize = BrushSize.Text
-        fontsize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
         coord = (BrushPreview.Size.Width - pensize) / 2
         If shape = "o" Then
@@ -132,6 +132,11 @@ brushdrawhandler:
 
     Private Sub Image_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Image.MouseUp
         draw = False
+        resscreenshot = New System.Drawing.Bitmap(Image.Width, Image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+        resgraph = Graphics.FromImage(resscreenshot)
+        resgraph.CopyFromScreen(Me.Location.X + x, Me.Location.Y + y, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
+        Image.BackgroundImage = resscreenshot
+        Image.Image = Nothing
     End Sub
 
     Private Sub BrushPreview_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushPreview.LoadCompleted
@@ -198,8 +203,7 @@ brushdrawhandler:
 
     Private Sub AboutButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AboutButton.Click
         StatusLabel.Text = "Showing About Window..."
-        Dim SecondForm As AboutBox1 = AboutBox1
-        SecondForm.Show()
+        AboutBox1.Show()
         StatusLabel.Text = "Ready"
     End Sub
 
@@ -471,17 +475,75 @@ rgbnotfound:
     End Sub
 
     Private Sub MainWindow_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
-        If Me.Width < 722 Then Me.Width = 722
-        If Me.Height < 475 Then Me.Height = 475
-        PaintToolsPanel.Location = New Point(Me.Size.Width - 202, -3)
-        PaintToolsPanel.Height = Me.Height + 10
-        CloseShortcut.Location = New Point(PaintToolsPanel.Location.X - 24, 0)
-        SaveShortcut.Location = New Point(CloseShortcut.Location.X - 23, 0)
-        OpenShortcut.Location = New Point(SaveShortcut.Location.X - 23, 0)
-        NewShortcut.Location = New Point(OpenShortcut.Location.X - 23, 0)
-        PictureBoxBackground.Width = Me.Width - 183
-        PictureBoxBackground.Height = Me.Height - 68
-        Image.Width = Me.Width - 217 : Image.Height = Me.Height - 91
-        Me.Image.Image = Nothing
+        If resizewarningresult = MsgBoxResult.Yes Then
+            StatusLabel.Text = "Resizing..."
+            PaintToolsPanel.Location = New Point(Me.Size.Width - 202, -3)
+            PaintToolsPanel.Height = Me.Height + 10
+            CloseShortcut.Location = New Point(PaintToolsPanel.Location.X - 24, 0)
+            SaveShortcut.Location = New Point(CloseShortcut.Location.X - 23, 0)
+            OpenShortcut.Location = New Point(SaveShortcut.Location.X - 23, 0)
+            NewShortcut.Location = New Point(OpenShortcut.Location.X - 23, 0)
+            PictureBoxBackground.Width = Me.Width - 183
+            PictureBoxBackground.Height = Me.Height - 68
+            Image.Width = Me.Width - 217
+            Image.Height = Me.Height - 91
+            Image.Image = New System.Drawing.Bitmap(Image.Width, Image.Height)
+            Image.BackgroundImage = resscreenshot
+            Dim pensize, coord As Single
+            pensize = BrushSize.Text
+            BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+            coord = (BrushPreview.Size.Width - pensize) / 2
+            If shape = "o" Then
+                BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+            End If
+            If shape = "[]" Then
+                BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+            End If
+            StatusLabel.Text = "Ready"
+        End If
+    End Sub
+
+    Private Sub MainWindow_ResizeBegin(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.ResizeBegin
+        StatusLabel.Text = "Preparing for Resize..."
+        resscreenshot = New System.Drawing.Bitmap(Image.Width, Image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+        resgraph = Graphics.FromImage(resscreenshot)
+        resgraph.CopyFromScreen(Me.Location.X + x, Me.Location.Y + y, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
+        Image.BackgroundImage = resscreenshot
+        If resizewarning = True Then
+            StatusLabel.Text = "Waiting for Message Box..."
+            resizewarningresult = MsgBox("You are about to resize the window. When the window is resized or maximized, the image gets stretched. Are you sure you want to continue?" & vbCrLf & vbCrLf & "(Your image won't be lost if you're only moving the window.)", MsgBoxStyle.YesNo, "Warning")
+            StatusLabel.Text = "Applying Resize preparations..."
+            If resizewarningresult = MsgBoxResult.Yes Then
+                resizewarning = False
+                Me.MaximizeBox = True
+            Else
+                LeftClick()
+            End If
+        End If
+        StatusLabel.Text = "Ready"
+    End Sub
+
+    Private Sub MainWindow_ResizeEnd(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.ResizeEnd
+        StatusLabel.Text = "Finishing Resize..."
+        If resizewarningresult = MsgBoxResult.No Then
+            Image.Image = resscreenshot
+        End If
+        Dim pensize, coord As Single
+        pensize = BrushSize.Text
+        BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+        coord = (BrushPreview.Size.Width - pensize) / 2
+        If shape = "o" Then
+            BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
+        End If
+        If shape = "[]" Then
+            BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
+        End If
+        StatusLabel.Text = "Ready"
+    End Sub
+
+    Private Sub SettingsButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SettingsButton.Click
+        StatusLabel.Text = "Showing Settings Window..."
+        SettingsForm.Show()
+        StatusLabel.Text = "Ready"
     End Sub
 End Class

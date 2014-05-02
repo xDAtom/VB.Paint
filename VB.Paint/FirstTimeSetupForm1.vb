@@ -1,13 +1,14 @@
 ﻿Public Class FirstTimeSetupForm1
+    Public os, osraw As String
+
     Private Sub FirstTimeSetupForm1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 start:
         On Error GoTo firstrun
         Dim settingsreader As IO.StreamReader = New IO.StreamReader("C:\ProgramData\VB.Paint\config.ini")
-        Dim os, osraw As String
         osraw = settingsreader.ReadLine
         os = Microsoft.VisualBasic.Right(osraw, Len(osraw) - 5)
         settingsreader.Close()
-        If os <> "xp" And os <> "vista" And os <> "7" Then
+        If os <> "xp" And os <> "vista" And os <> "7" And os <> "8/8.1" Then
             Exit Sub
         End If
         MainWindow.Show()
@@ -17,15 +18,7 @@ firstrun:
         If ErrorToString() <> "Could not find file 'C:\ProgramData\VB.Paint\config.ini'." Then
             settingsreader.Close()
         End If
-        Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
-        configrecreatordata.RedirectStandardError = True
-        configrecreatordata.RedirectStandardOutput = True
-        configrecreatordata.CreateNoWindow = False
-        configrecreatordata.WindowStyle = ProcessWindowStyle.Hidden
-        configrecreatordata.UseShellExecute = False
-        configrecreator.StartInfo = configrecreatordata
-        configrecreator.Start()
-        configrecreator.WaitForExit()
+        ResetConfig()
         Dim firstrunconfigwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
         firstrunconfigwriter.WriteLine("os = null")
         firstrunconfigwriter.Close()
@@ -46,15 +39,7 @@ firstrun:
                 Choice8.Visible = False
                 Choice8.Enabled = False
                 oschoice = 1
-                Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
-                configrecreatordata.RedirectStandardError = True
-                configrecreatordata.RedirectStandardOutput = True
-                configrecreatordata.CreateNoWindow = False
-                configrecreatordata.WindowStyle = ProcessWindowStyle.Hidden
-                configrecreatordata.UseShellExecute = False
-                configrecreator.StartInfo = configrecreatordata
-                configrecreator.Start()
-                configrecreator.WaitForExit()
+                ResetConfig()
                 Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
                 configwriter.WriteLine("os = xp")
                 configwriter.Close()
@@ -77,15 +62,7 @@ firstrun:
                 Choice8.Visible = False
                 Choice8.Enabled = False
                 oschoice = 2
-                Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
-                configrecreatordata.RedirectStandardError = True
-                configrecreatordata.RedirectStandardOutput = True
-                configrecreatordata.CreateNoWindow = False
-                configrecreatordata.WindowStyle = ProcessWindowStyle.Hidden
-                configrecreatordata.UseShellExecute = False
-                configrecreator.StartInfo = configrecreatordata
-                configrecreator.Start()
-                configrecreator.WaitForExit()
+                ResetConfig()
                 Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
                 configwriter.WriteLine("os = vista")
                 configwriter.Close()
@@ -156,15 +133,7 @@ firstrun:
                 ChoiceSize150.Enabled = False
                 SizeInstructButton.Visible = False
                 SizeInstructButton.Enabled = False
-                Dim configrecreatordata As New ProcessStartInfo("reset-config.bat"), configrecreator As New Process()
-                configrecreatordata.RedirectStandardError = True
-                configrecreatordata.RedirectStandardOutput = True
-                configrecreatordata.CreateNoWindow = False
-                configrecreatordata.WindowStyle = ProcessWindowStyle.Hidden
-                configrecreatordata.UseShellExecute = False
-                configrecreator.StartInfo = configrecreatordata
-                configrecreator.Start()
-                configrecreator.WaitForExit()
+                ResetConfig()
                 Dim configwriter As IO.StreamWriter = New IO.StreamWriter("C:\ProgramData\VB.Paint\config.ini")
                 If oschoice = 3 Then
                     configwriter.WriteLine("os = 7")
@@ -248,9 +217,5 @@ firstrun:
         Label3.Text = "Please check the setting and make the same below:"
         BackButton.Visible = False
         BackButton.Enabled = False
-    End Sub
-
-    Private Sub Process1_Exited(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
     End Sub
 End Class

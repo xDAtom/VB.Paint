@@ -55,6 +55,7 @@ Partial Class MainWindow
         Me.HelpMenu = New System.Windows.Forms.ToolStripMenuItem
         Me.ViewReadmeButton = New System.Windows.Forms.ToolStripMenuItem
         Me.RGBColorChartButton = New System.Windows.Forms.ToolStripMenuItem
+        Me.SettingsButton = New System.Windows.Forms.ToolStripMenuItem
         Me.CloseShortcut = New System.Windows.Forms.Button
         Me.OpenShortcut = New System.Windows.Forms.Button
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog
@@ -329,6 +330,7 @@ Partial Class MainWindow
         'Image
         '
         Me.Image.BackColor = System.Drawing.Color.Silver
+        Me.Image.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Image.Enabled = False
         Me.Image.Location = New System.Drawing.Point(7, 28)
         Me.Image.Margin = New System.Windows.Forms.Padding(2)
@@ -417,7 +419,7 @@ Partial Class MainWindow
         'MenuStrip
         '
         Me.MenuStrip.BackColor = System.Drawing.SystemColors.Control
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.HelpMenu, Me.AboutButton})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.HelpMenu, Me.AboutButton, Me.SettingsButton})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
@@ -445,6 +447,12 @@ Partial Class MainWindow
         Me.RGBColorChartButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Shift Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
         Me.RGBColorChartButton.Size = New System.Drawing.Size(211, 22)
         Me.RGBColorChartButton.Text = "RGB Color Chart"
+        '
+        'SettingsButton
+        '
+        Me.SettingsButton.Name = "SettingsButton"
+        Me.SettingsButton.Size = New System.Drawing.Size(61, 20)
+        Me.SettingsButton.Text = "Settings"
         '
         'CloseShortcut
         '
@@ -501,6 +509,8 @@ Partial Class MainWindow
         Me.Controls.Add(Me.PictureBoxBackground)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.MaximizeBox = False
+        Me.MinimumSize = New System.Drawing.Size(722, 475)
         Me.Name = "MainWindow"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "VB.Paint"
@@ -557,4 +567,5 @@ Partial Class MainWindow
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents FontButton As System.Windows.Forms.Button
     Friend WithEvents FontDialog As System.Windows.Forms.FontDialog
+    Friend WithEvents SettingsButton As System.Windows.Forms.ToolStripMenuItem
 End Class
