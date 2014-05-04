@@ -45,9 +45,11 @@ firstrun:
                 configwriter.Close()
                 DoneButton.Enabled = True
                 DoneButton.Visible = True
+                EndButton.Enabled = True
+                EndButton.Visible = True
                 Label1.Text = "You're good to go!"
                 Label2.Text = "You've successfully set up VB.Paint."
-                Label3.Text = "Click the button below to start using it."
+                Label3.Text = "You need to restart VB.Paint to start using it."
                 ConfirmButton.Visible = False
                 ConfirmButton.Enabled = False
                 Exit Sub
@@ -68,9 +70,11 @@ firstrun:
                 configwriter.Close()
                 DoneButton.Enabled = True
                 DoneButton.Visible = True
+                EndButton.Enabled = True
+                EndButton.Visible = True
                 Label1.Text = "You're good to go!"
                 Label2.Text = "You've successfully set up VB.Paint."
-                Label3.Text = "Click the button below to start using it."
+                Label3.Text = "You need to restart VB.Paint to start using it."
                 ConfirmButton.Visible = False
                 ConfirmButton.Enabled = False
                 Exit Sub
@@ -144,9 +148,11 @@ firstrun:
                 configwriter.Close()
                 DoneButton.Enabled = True
                 DoneButton.Visible = True
+                EndButton.Enabled = True
+                EndButton.Visible = True
                 Label1.Text = "You're good to go!"
                 Label2.Text = "You've successfully set up VB.Paint."
-                Label3.Text = "Click the button below to start using it."
+                Label3.Text = "You need to restart VB.Paint to start using it."
                 ConfirmButton.Visible = False
                 ConfirmButton.Enabled = False
                 Exit Sub
@@ -197,8 +203,12 @@ firstrun:
     End Sub
 
     Private Sub DoneButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DoneButton.Click
-        MainWindow.Show()
-        Me.Close()
+        System.Diagnostics.Process.Start("VB.Paint.exe")
+        End
+    End Sub
+
+    Private Sub EndButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EndButton.Click
+        End
     End Sub
 
     Private Sub BackButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BackButton.Click

@@ -20,13 +20,13 @@
     End Sub
 
     Private Sub OSSelection_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OSSelection.SelectedIndexChanged
-        If os = "7" Or os = "8/8.1" Then
+        If OSSelection.SelectedIndex = 2 Or OSSelection.SelectedIndex = 3 Then
             Label2.Visible = True
             SizeSelection.Visible = True
             SizeSelection.SelectedIndex = 0
         Else
-            Label2.Visible = True
-            SizeSelection.Visible = True
+            Label2.Visible = False
+            SizeSelection.Visible = False
             SizeSelection.SelectedIndex = 0
         End If
         OKButton.Enabled = True

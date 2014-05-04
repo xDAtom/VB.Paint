@@ -37,6 +37,7 @@ Partial Class FirstTimeSetupForm1
         Me.BackButton = New System.Windows.Forms.Button
         Me.ChoiceVista = New System.Windows.Forms.RadioButton
         Me.Choice8 = New System.Windows.Forms.RadioButton
+        Me.EndButton = New System.Windows.Forms.Button
         Me.SuspendLayout()
         '
         'Label1
@@ -101,11 +102,11 @@ Partial Class FirstTimeSetupForm1
         '
         Me.DoneButton.Enabled = False
         Me.DoneButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DoneButton.Location = New System.Drawing.Point(94, 122)
+        Me.DoneButton.Location = New System.Drawing.Point(18, 122)
         Me.DoneButton.Name = "DoneButton"
         Me.DoneButton.Size = New System.Drawing.Size(101, 40)
         Me.DoneButton.TabIndex = 6
-        Me.DoneButton.Text = "Start using VB.Paint!"
+        Me.DoneButton.Text = "Restart VB.Paint!"
         Me.DoneButton.UseVisualStyleBackColor = True
         Me.DoneButton.Visible = False
         '
@@ -193,12 +194,25 @@ Partial Class FirstTimeSetupForm1
         Me.Choice8.Text = "Windows 8/8.1"
         Me.Choice8.UseVisualStyleBackColor = True
         '
+        'EndButton
+        '
+        Me.EndButton.Enabled = False
+        Me.EndButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.EndButton.Location = New System.Drawing.Point(169, 122)
+        Me.EndButton.Name = "EndButton"
+        Me.EndButton.Size = New System.Drawing.Size(101, 40)
+        Me.EndButton.TabIndex = 14
+        Me.EndButton.Text = "Restart Later"
+        Me.EndButton.UseVisualStyleBackColor = True
+        Me.EndButton.Visible = False
+        '
         'FirstTimeSetupForm1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 191)
         Me.Controls.Add(Me.BackButton)
+        Me.Controls.Add(Me.EndButton)
         Me.Controls.Add(Me.SizeInstructButton)
         Me.Controls.Add(Me.ChoiceSize125)
         Me.Controls.Add(Me.ChoiceSize100)
@@ -236,4 +250,5 @@ Partial Class FirstTimeSetupForm1
     Friend WithEvents BackButton As System.Windows.Forms.Button
     Friend WithEvents ChoiceVista As System.Windows.Forms.RadioButton
     Friend WithEvents Choice8 As System.Windows.Forms.RadioButton
+    Friend WithEvents EndButton As System.Windows.Forms.Button
 End Class

@@ -22,7 +22,7 @@
         Me.Image.Image = New Bitmap(Image.Width, Image.Height)
         BrushPreview.Height = BrushPreview.Width
         If os = "xp" Then
-            x = 13 : y = 58
+            x = 11 : y = 58
         End If
         If os = "vista" Then
             x = 15 : y = 56
