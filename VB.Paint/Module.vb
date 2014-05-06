@@ -46,4 +46,19 @@
         configresettor.Start()
         configresettor.WaitForExit()
     End Sub
+
+    Public Sub saveCoordUpdate()
+        If MainWindow.os = "xp" Then
+            MainWindow.x = 11 : MainWindow.y = 58
+        End If
+        If MainWindow.os = "vista" Then
+            MainWindow.x = 15 : MainWindow.y = 56
+        End If
+        If MainWindow.os = "7" Then
+            MainWindow.x = 15 : MainWindow.y = 58
+        End If
+        If MainWindow.os = "8/8.1" Then
+            MainWindow.x = 15 : MainWindow.y = 59
+        End If
+    End Sub
 End Module

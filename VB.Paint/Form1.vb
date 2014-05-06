@@ -9,7 +9,7 @@
     Dim fontsize As Single = 20
     Dim stringfont As New Font("Arial", fontsize)
     Dim drawstring As String = "text"
-    Dim x, y As Single
+    Public x, y As Single
     Public os As String = FirstTimeSetupForm1.os
     Dim resizewarning As Boolean = True
     Dim resizewarningresult As MsgBoxResult
@@ -21,18 +21,7 @@
         StatusLabel.Text = "Initializing..."
         Me.Image.Image = New Bitmap(Image.Width, Image.Height)
         BrushPreview.Height = BrushPreview.Width
-        If os = "xp" Then
-            x = 11 : y = 58
-        End If
-        If os = "vista" Then
-            x = 15 : y = 56
-        End If
-        If os = "7" Then
-            x = 15 : y = 58
-        End If
-        If os = "8/8.1" Then
-            x = 15 : y = 59
-        End If
+        saveCoordUpdate()
         StatusLabel.Text = "Ready"
     End Sub
 
@@ -543,7 +532,15 @@ rgbnotfound:
 
     Private Sub SettingsButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SettingsButton.Click
         StatusLabel.Text = "Showing Settings Window..."
-        SettingsForm.Show()
+        SettingsForm.ShowDialog()
+        If SettingsForm.settingsResult = DialogResult.OK Then
+            Dim settingsreader As IO.StreamReader = New IO.StreamReader("C:\ProgramData\VB.Paint\config.ini")
+            Dim osraw As String
+            osraw = settingsreader.ReadLine
+            os = Microsoft.VisualBasic.Right(osraw, Len(osraw) - 5)
+            settingsreader.Close()
+            saveCoordUpdate()
+        End If
         StatusLabel.Text = "Ready"
     End Sub
 End Class

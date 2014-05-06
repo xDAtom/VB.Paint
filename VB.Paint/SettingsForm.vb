@@ -1,7 +1,9 @@
 ﻿Public Class SettingsForm
     Dim os As String = MainWindow.os
+    Public settingsResult As DialogResult
 
     Private Sub SettingsForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Me.Load
+        settingsResult = DialogResult.Cancel
         SizeSelection.SelectedIndex = 0
         If os = "xp" Then
             OSSelection.SelectedIndex = 0
@@ -58,12 +60,14 @@
             configwriter.WriteLine("os = 8/8.1")
         End If
         configwriter.Close()
+        settingsResult = DialogResult.OK
         Me.Close()
         OKButton.Enabled = False
         ApplyButton.Enabled = False
     End Sub
 
     Private Sub ExitButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitButton.Click
+        settingsResult = DialogResult.Cancel
         Me.Close()
     End Sub
 
