@@ -10,17 +10,17 @@
     Dim stringfont As New Font("Arial", fontsize)
     Dim drawstring As String = "text"
     Public x, y As Single
-    Public os As String = FirstTimeSetupForm1.os
+    Public FullOSName, os As String
     Dim resizewarning As Boolean = True
     Dim resizewarningresult As MsgBoxResult
     Dim resscreenshot As Bitmap
     Dim resgraph As Graphics
-    Dim maximized As Boolean = False
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         StatusLabel.Text = "Initializing..."
         Me.Image.Image = New Bitmap(Image.Width, Image.Height)
         BrushPreview.Height = BrushPreview.Width
+        GetOS()
         saveCoordUpdate()
         StatusLabel.Text = "Ready"
     End Sub
@@ -526,20 +526,6 @@ rgbnotfound:
         End If
         If shape = "[]" Then
             BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
-        End If
-        StatusLabel.Text = "Ready"
-    End Sub
-
-    Private Sub SettingsButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SettingsButton.Click
-        StatusLabel.Text = "Showing Settings Window..."
-        SettingsForm.ShowDialog()
-        If SettingsForm.settingsResult = DialogResult.OK Then
-            Dim settingsreader As IO.StreamReader = New IO.StreamReader("C:\ProgramData\VB.Paint\config.ini")
-            Dim osraw As String
-            osraw = settingsreader.ReadLine
-            os = Microsoft.VisualBasic.Right(osraw, Len(osraw) - 5)
-            settingsreader.Close()
-            saveCoordUpdate()
         End If
         StatusLabel.Text = "Ready"
     End Sub

@@ -10,5 +10,3 @@ C:\Users\Dominik\Documents\Visual Studio 2008\Projects\VB.Paint\VB.Paint\obj\Rel
 C:\Users\Dominik\Documents\Visual Studio 2008\Projects\VB.Paint\VB.Paint\obj\Release\VB.Paint.xml
 C:\Users\Dominik\Documents\Visual Studio 2008\Projects\VB.Paint\VB.Paint\obj\Release\VB.Paint.pdb
 C:\Users\Dominik\Documents\Visual Studio 2008\Projects\VB.Paint\VB.Paint\obj\Release\VB.Paint.LicenseForm1.resources
-C:\Users\Dominik\Documents\Visual Studio 2008\Projects\VB.Paint\VB.Paint\obj\Release\VB.Paint.FirstTimeSetupForm1.resources
-C:\Users\Dominik\Documents\Visual Studio 2008\Projects\VB.Paint\VB.Paint\obj\Release\VB.Paint.SettingsForm.resources

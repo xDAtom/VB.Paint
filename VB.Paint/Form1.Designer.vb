@@ -55,7 +55,6 @@ Partial Class MainWindow
         Me.HelpMenu = New System.Windows.Forms.ToolStripMenuItem
         Me.ViewReadmeButton = New System.Windows.Forms.ToolStripMenuItem
         Me.RGBColorChartButton = New System.Windows.Forms.ToolStripMenuItem
-        Me.SettingsButton = New System.Windows.Forms.ToolStripMenuItem
         Me.CloseShortcut = New System.Windows.Forms.Button
         Me.OpenShortcut = New System.Windows.Forms.Button
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog
@@ -367,7 +366,7 @@ Partial Class MainWindow
         '
         Me.NewButton.Name = "NewButton"
         Me.NewButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewButton.Size = New System.Drawing.Size(149, 22)
+        Me.NewButton.Size = New System.Drawing.Size(152, 22)
         Me.NewButton.Text = "New"
         '
         'OpenButton
@@ -375,7 +374,7 @@ Partial Class MainWindow
         Me.OpenButton.Enabled = False
         Me.OpenButton.Name = "OpenButton"
         Me.OpenButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.OpenButton.Size = New System.Drawing.Size(149, 22)
+        Me.OpenButton.Size = New System.Drawing.Size(152, 22)
         Me.OpenButton.Text = "Open"
         '
         'SaveButton
@@ -383,21 +382,21 @@ Partial Class MainWindow
         Me.SaveButton.Enabled = False
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveButton.Size = New System.Drawing.Size(149, 22)
+        Me.SaveButton.Size = New System.Drawing.Size(152, 22)
         Me.SaveButton.Text = "Save"
         '
         'CloseButton
         '
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.CloseButton.Size = New System.Drawing.Size(149, 22)
+        Me.CloseButton.Size = New System.Drawing.Size(152, 22)
         Me.CloseButton.Text = "Close"
         '
         'ExitButton
         '
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.ExitButton.Size = New System.Drawing.Size(149, 22)
+        Me.ExitButton.Size = New System.Drawing.Size(152, 22)
         Me.ExitButton.Text = "Exit"
         '
         'StatusStrip
@@ -419,7 +418,7 @@ Partial Class MainWindow
         'MenuStrip
         '
         Me.MenuStrip.BackColor = System.Drawing.SystemColors.Control
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.HelpMenu, Me.AboutButton, Me.SettingsButton})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.HelpMenu, Me.AboutButton})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
@@ -447,12 +446,6 @@ Partial Class MainWindow
         Me.RGBColorChartButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Shift Or System.Windows.Forms.Keys.F1), System.Windows.Forms.Keys)
         Me.RGBColorChartButton.Size = New System.Drawing.Size(211, 22)
         Me.RGBColorChartButton.Text = "RGB Color Chart"
-        '
-        'SettingsButton
-        '
-        Me.SettingsButton.Name = "SettingsButton"
-        Me.SettingsButton.Size = New System.Drawing.Size(61, 20)
-        Me.SettingsButton.Text = "Settings"
         '
         'CloseShortcut
         '
@@ -567,5 +560,4 @@ Partial Class MainWindow
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents FontButton As System.Windows.Forms.Button
     Friend WithEvents FontDialog As System.Windows.Forms.FontDialog
-    Friend WithEvents SettingsButton As System.Windows.Forms.ToolStripMenuItem
 End Class

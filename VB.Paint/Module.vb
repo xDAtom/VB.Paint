@@ -35,18 +35,6 @@
         mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
     End Sub
 
-    Public Sub ResetConfig()
-        Dim configresetdata As New ProcessStartInfo("reset-config.bat"), configresettor As New Process()
-        configresetdata.RedirectStandardError = True
-        configresetdata.RedirectStandardOutput = True
-        configresetdata.CreateNoWindow = False
-        configresetdata.WindowStyle = ProcessWindowStyle.Hidden
-        configresetdata.UseShellExecute = False
-        configresettor.StartInfo = configresetdata
-        configresettor.Start()
-        configresettor.WaitForExit()
-    End Sub
-
     Public Sub saveCoordUpdate()
         If MainWindow.os = "xp" Then
             MainWindow.x = 11 : MainWindow.y = 58
@@ -59,6 +47,26 @@
         End If
         If MainWindow.os = "8/8.1" Then
             MainWindow.x = 15 : MainWindow.y = 59
+        End If
+    End Sub
+
+    Public Sub GetOS()
+        MainWindow.FullOSName = My.Computer.Info.OSFullName
+        If MainWindow.FullOSName.Contains("Windows 8") Then
+            MainWindow.os = "8/8.1"
+        ElseIf MainWindow.FullOSName.Contains("Windows 7") Then
+            MainWindow.os = "7"
+        ElseIf MainWindow.FullOSName.Contains("Windows Vista") Then
+            MainWindow.os = "vista"
+        ElseIf MainWindow.FullOSName.Contains("Windows XP") Then
+            MainWindow.os = "xp"
+        Else
+            If Microsoft.VisualBasic.Right(MainWindow.FullOSName, 1) = " " Then
+                MsgBox(MainWindow.FullOSName & "is not supported by VB.Paint v" & My.Application.Info.Version.ToString & ".", MsgBoxStyle.Critical, "FATAL ERROR")
+            Else
+                MsgBox(MainWindow.FullOSName & " is not supported by VB.Paint v" & My.Application.Info.Version.ToString & ".", MsgBoxStyle.Critical, "FATAL ERROR")
+            End If
+            End
         End If
     End Sub
 End Module
