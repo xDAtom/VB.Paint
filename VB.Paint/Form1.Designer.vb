@@ -26,6 +26,8 @@ Partial Class MainWindow
         Me.NewShortcut = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
         Me.PaintToolsPanel = New System.Windows.Forms.Panel
+        Me.BrushModeToTool = New System.Windows.Forms.RadioButton
+        Me.BrushModeToBrush = New System.Windows.Forms.RadioButton
         Me.FontButton = New System.Windows.Forms.Button
         Me.TextToDrawBox = New System.Windows.Forms.TextBox
         Me.Label4 = New System.Windows.Forms.Label
@@ -85,7 +87,7 @@ Partial Class MainWindow
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(11, 217)
+        Me.Label5.Location = New System.Drawing.Point(11, 237)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(78, 13)
@@ -95,6 +97,8 @@ Partial Class MainWindow
         'PaintToolsPanel
         '
         Me.PaintToolsPanel.BackColor = System.Drawing.Color.White
+        Me.PaintToolsPanel.Controls.Add(Me.BrushModeToTool)
+        Me.PaintToolsPanel.Controls.Add(Me.BrushModeToBrush)
         Me.PaintToolsPanel.Controls.Add(Me.FontButton)
         Me.PaintToolsPanel.Controls.Add(Me.TextToDrawBox)
         Me.PaintToolsPanel.Controls.Add(Me.Label4)
@@ -116,9 +120,33 @@ Partial Class MainWindow
         Me.PaintToolsPanel.Size = New System.Drawing.Size(193, 450)
         Me.PaintToolsPanel.TabIndex = 14
         '
+        'BrushModeToTool
+        '
+        Me.BrushModeToTool.AutoSize = True
+        Me.BrushModeToTool.Enabled = False
+        Me.BrushModeToTool.Location = New System.Drawing.Point(101, 15)
+        Me.BrushModeToTool.Name = "BrushModeToTool"
+        Me.BrushModeToTool.Size = New System.Drawing.Size(46, 17)
+        Me.BrushModeToTool.TabIndex = 25
+        Me.BrushModeToTool.Text = "Tool"
+        Me.BrushModeToTool.UseVisualStyleBackColor = True
+        '
+        'BrushModeToBrush
+        '
+        Me.BrushModeToBrush.AutoSize = True
+        Me.BrushModeToBrush.Checked = True
+        Me.BrushModeToBrush.Enabled = False
+        Me.BrushModeToBrush.Location = New System.Drawing.Point(43, 15)
+        Me.BrushModeToBrush.Name = "BrushModeToBrush"
+        Me.BrushModeToBrush.Size = New System.Drawing.Size(52, 17)
+        Me.BrushModeToBrush.TabIndex = 24
+        Me.BrushModeToBrush.TabStop = True
+        Me.BrushModeToBrush.Text = "Brush"
+        Me.BrushModeToBrush.UseVisualStyleBackColor = True
+        '
         'FontButton
         '
-        Me.FontButton.Location = New System.Drawing.Point(61, 70)
+        Me.FontButton.Location = New System.Drawing.Point(61, 90)
         Me.FontButton.Name = "FontButton"
         Me.FontButton.Size = New System.Drawing.Size(63, 25)
         Me.FontButton.TabIndex = 23
@@ -129,7 +157,7 @@ Partial Class MainWindow
         'TextToDrawBox
         '
         Me.TextToDrawBox.Enabled = False
-        Me.TextToDrawBox.Location = New System.Drawing.Point(39, 178)
+        Me.TextToDrawBox.Location = New System.Drawing.Point(39, 198)
         Me.TextToDrawBox.Margin = New System.Windows.Forms.Padding(2)
         Me.TextToDrawBox.Name = "TextToDrawBox"
         Me.TextToDrawBox.Size = New System.Drawing.Size(136, 20)
@@ -140,7 +168,7 @@ Partial Class MainWindow
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(8, 181)
+        Me.Label4.Location = New System.Drawing.Point(8, 201)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(31, 13)
@@ -152,7 +180,7 @@ Partial Class MainWindow
         '
         Me.BrushShapeToTextButton.BackgroundImage = CType(resources.GetObject("BrushShapeToTextButton.BackgroundImage"), System.Drawing.Image)
         Me.BrushShapeToTextButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.BrushShapeToTextButton.Location = New System.Drawing.Point(134, 26)
+        Me.BrushShapeToTextButton.Location = New System.Drawing.Point(134, 46)
         Me.BrushShapeToTextButton.Margin = New System.Windows.Forms.Padding(2)
         Me.BrushShapeToTextButton.Name = "BrushShapeToTextButton"
         Me.BrushShapeToTextButton.Size = New System.Drawing.Size(25, 25)
@@ -162,7 +190,7 @@ Partial Class MainWindow
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(15, 32)
+        Me.Label1.Location = New System.Drawing.Point(15, 52)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(71, 13)
@@ -173,7 +201,7 @@ Partial Class MainWindow
         '
         Me.BrushShapeToSquareButton.BackgroundImage = CType(resources.GetObject("BrushShapeToSquareButton.BackgroundImage"), System.Drawing.Image)
         Me.BrushShapeToSquareButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.BrushShapeToSquareButton.Location = New System.Drawing.Point(110, 26)
+        Me.BrushShapeToSquareButton.Location = New System.Drawing.Point(110, 46)
         Me.BrushShapeToSquareButton.Margin = New System.Windows.Forms.Padding(2)
         Me.BrushShapeToSquareButton.Name = "BrushShapeToSquareButton"
         Me.BrushShapeToSquareButton.Size = New System.Drawing.Size(25, 25)
@@ -185,7 +213,7 @@ Partial Class MainWindow
         Me.BrushShapeToCircleButton.BackgroundImage = CType(resources.GetObject("BrushShapeToCircleButton.BackgroundImage"), System.Drawing.Image)
         Me.BrushShapeToCircleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.BrushShapeToCircleButton.Enabled = False
-        Me.BrushShapeToCircleButton.Location = New System.Drawing.Point(86, 26)
+        Me.BrushShapeToCircleButton.Location = New System.Drawing.Point(86, 46)
         Me.BrushShapeToCircleButton.Margin = New System.Windows.Forms.Padding(2)
         Me.BrushShapeToCircleButton.Name = "BrushShapeToCircleButton"
         Me.BrushShapeToCircleButton.Size = New System.Drawing.Size(25, 25)
@@ -196,7 +224,7 @@ Partial Class MainWindow
         '
         Me.Blue.BackColor = System.Drawing.Color.Blue
         Me.Blue.ForeColor = System.Drawing.Color.Yellow
-        Me.Blue.Location = New System.Drawing.Point(100, 141)
+        Me.Blue.Location = New System.Drawing.Point(100, 161)
         Me.Blue.Margin = New System.Windows.Forms.Padding(2)
         Me.Blue.Name = "Blue"
         Me.Blue.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -208,7 +236,7 @@ Partial Class MainWindow
         '
         Me.Green.BackColor = System.Drawing.Color.Lime
         Me.Green.ForeColor = System.Drawing.Color.Magenta
-        Me.Green.Location = New System.Drawing.Point(100, 124)
+        Me.Green.Location = New System.Drawing.Point(100, 144)
         Me.Green.Margin = New System.Windows.Forms.Padding(2)
         Me.Green.Name = "Green"
         Me.Green.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -220,7 +248,7 @@ Partial Class MainWindow
         '
         Me.Red.BackColor = System.Drawing.Color.Red
         Me.Red.ForeColor = System.Drawing.Color.Cyan
-        Me.Red.Location = New System.Drawing.Point(100, 107)
+        Me.Red.Location = New System.Drawing.Point(100, 127)
         Me.Red.Margin = New System.Windows.Forms.Padding(2)
         Me.Red.Name = "Red"
         Me.Red.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -231,7 +259,7 @@ Partial Class MainWindow
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(32, 126)
+        Me.Label3.Location = New System.Drawing.Point(32, 146)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(64, 13)
@@ -241,7 +269,7 @@ Partial Class MainWindow
         'BrushPreview
         '
         Me.BrushPreview.BackColor = System.Drawing.Color.CornflowerBlue
-        Me.BrushPreview.Location = New System.Drawing.Point(11, 236)
+        Me.BrushPreview.Location = New System.Drawing.Point(11, 256)
         Me.BrushPreview.Margin = New System.Windows.Forms.Padding(2)
         Me.BrushPreview.Name = "BrushPreview"
         Me.BrushPreview.Size = New System.Drawing.Size(166, 166)
@@ -308,7 +336,7 @@ Partial Class MainWindow
         Me.BrushSize.Items.Add("180")
         Me.BrushSize.Items.Add("190")
         Me.BrushSize.Items.Add("200")
-        Me.BrushSize.Location = New System.Drawing.Point(100, 74)
+        Me.BrushSize.Location = New System.Drawing.Point(100, 94)
         Me.BrushSize.Margin = New System.Windows.Forms.Padding(2)
         Me.BrushSize.Name = "BrushSize"
         Me.BrushSize.Size = New System.Drawing.Size(41, 20)
@@ -319,7 +347,7 @@ Partial Class MainWindow
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(37, 76)
+        Me.Label2.Location = New System.Drawing.Point(37, 96)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(60, 13)
@@ -366,7 +394,7 @@ Partial Class MainWindow
         '
         Me.NewButton.Name = "NewButton"
         Me.NewButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewButton.Size = New System.Drawing.Size(152, 22)
+        Me.NewButton.Size = New System.Drawing.Size(149, 22)
         Me.NewButton.Text = "New"
         '
         'OpenButton
@@ -374,7 +402,7 @@ Partial Class MainWindow
         Me.OpenButton.Enabled = False
         Me.OpenButton.Name = "OpenButton"
         Me.OpenButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.OpenButton.Size = New System.Drawing.Size(152, 22)
+        Me.OpenButton.Size = New System.Drawing.Size(149, 22)
         Me.OpenButton.Text = "Open"
         '
         'SaveButton
@@ -382,21 +410,21 @@ Partial Class MainWindow
         Me.SaveButton.Enabled = False
         Me.SaveButton.Name = "SaveButton"
         Me.SaveButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveButton.Size = New System.Drawing.Size(152, 22)
+        Me.SaveButton.Size = New System.Drawing.Size(149, 22)
         Me.SaveButton.Text = "Save"
         '
         'CloseButton
         '
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.CloseButton.Size = New System.Drawing.Size(152, 22)
+        Me.CloseButton.Size = New System.Drawing.Size(149, 22)
         Me.CloseButton.Text = "Close"
         '
         'ExitButton
         '
         Me.ExitButton.Name = "ExitButton"
         Me.ExitButton.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.ExitButton.Size = New System.Drawing.Size(152, 22)
+        Me.ExitButton.Size = New System.Drawing.Size(149, 22)
         Me.ExitButton.Text = "Exit"
         '
         'StatusStrip
@@ -560,4 +588,6 @@ Partial Class MainWindow
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents FontButton As System.Windows.Forms.Button
     Friend WithEvents FontDialog As System.Windows.Forms.FontDialog
+    Friend WithEvents BrushModeToTool As System.Windows.Forms.RadioButton
+    Friend WithEvents BrushModeToBrush As System.Windows.Forms.RadioButton
 End Class
