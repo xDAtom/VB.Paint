@@ -105,44 +105,54 @@ brushsizehandler:
                     Image.CreateGraphics.DrawString(drawstring, stringfont, brush, e.X, e.Y)
                 End If
             End If
-            If brushmode = "tool" Then
-                If toolstate = "waitForStart" Then
-                    startpoint = New Point(e.X, e.Y)
-                    Label4.Text = "Click ending point on drawing"
-                    toolstate = "waitForEnd"
-                    StatusLabel.Text = "Ready"
-                    Exit Sub
+        End If
+        If brushmode = "tool" Then
+            If toolstate = "waitForStart" Then
+                startpoint = New Point(e.X, e.Y)
+                Label4.Text = "Click ending point on drawing"
+                toolstate = "waitForEnd"
+                StatusLabel.Text = "Ready"
+                Exit Sub
+            End If
+            If toolstate = "waitForEnd" Then
+                endpoint = New Point(e.X, e.Y)
+                Label4.Text = "Text:"
+                Label4.Visible = False
+                If shape = "o" Then
+                    Image.CreateGraphics.FillEllipse(brush, startpoint.X, startpoint.Y, endpoint.X - startpoint.X, endpoint.Y - startpoint.Y)
                 End If
-                If toolstate = "waitForEnd" Then
-                    endpoint = New Point(e.X, e.Y)
-                    Label4.Text = "Text:"
-                    Label4.Visible = False
-                    If shape = "o" Then
-                        Image.CreateGraphics.FillEllipse(brush, startpoint.X, startpoint.Y, endpoint.X - startpoint.X, endpoint.Y - startpoint.Y)
-                    End If
-                    If shape = "[]" Then
+                If shape = "[]" Then
+                    If startpoint.X < endpoint.X And startpoint.Y < endpoint.Y Then
                         Image.CreateGraphics.FillRectangle(brush, startpoint.X, startpoint.Y, endpoint.X - startpoint.X, endpoint.Y - startpoint.Y)
                     End If
-                    BrushModeToBrush.Enabled = True
-                    BrushModeToTool.Enabled = True
-                    BrushShapeToCircleButton.Enabled = True
-                    BrushShapeToSquareButton.Enabled = True
-                    Red.Enabled = True
-                    Green.Enabled = True
-                    Blue.Enabled = True
-                    NewButton.Enabled = True
-                    NewShortcut.Enabled = True
-                    OpenButton.Enabled = True
-                    OpenShortcut.Enabled = True
-                    SaveButton.Enabled = True
-                    SaveShortcut.Enabled = True
-                    CloseButton.Enabled = True
-                    CloseShortcut.Enabled = True
-                    AboutButton.Enabled = True
-                    HelpMenu.Enabled = True
-                    toolstate = "waitForStart"
-                    toolstate = ""
+                    If startpoint.X > endpoint.X And startpoint.Y > endpoint.Y Then
+                        Image.CreateGraphics.FillRectangle(brush, endpoint.X, endpoint.Y, startpoint.X - endpoint.X, startpoint.Y - endpoint.Y)
+                    End If
+                    If startpoint.X < endpoint.X And startpoint.Y > endpoint.Y Then
+                        Image.CreateGraphics.FillRectangle(brush, startpoint.X, endpoint.Y, endpoint.X - startpoint.X, startpoint.Y - endpoint.Y)
+                    End If
+                    If startpoint.X > endpoint.X And startpoint.Y < endpoint.Y Then
+                        Image.CreateGraphics.FillRectangle(brush, endpoint.X, startpoint.Y, startpoint.X - endpoint.X, endpoint.Y - startpoint.Y)
+                    End If
                 End If
+                BrushModeToBrush.Enabled = True
+                BrushModeToTool.Enabled = True
+                BrushShapeToCircleButton.Enabled = True
+                BrushShapeToSquareButton.Enabled = True
+                Red.Enabled = True
+                Green.Enabled = True
+                Blue.Enabled = True
+                NewButton.Enabled = True
+                NewShortcut.Enabled = True
+                OpenButton.Enabled = True
+                OpenShortcut.Enabled = True
+                SaveButton.Enabled = True
+                SaveShortcut.Enabled = True
+                CloseButton.Enabled = True
+                CloseShortcut.Enabled = True
+                AboutButton.Enabled = True
+                HelpMenu.Enabled = True
+                toolstate = ""
             End If
         End If
         StatusLabel.Text = "Ready"
@@ -183,7 +193,7 @@ brushdrawhandler:
         resgraph = Graphics.FromImage(resscreenshot)
         resgraph.CopyFromScreen(Me.Location.X + x, Me.Location.Y + y, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
         Image.BackgroundImage = resscreenshot
-        Image.Image = Nothing
+        Image.Image = New Bitmap(Image.Width, Image.Height)
     End Sub
 
     Private Sub BrushPreview_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushPreview.LoadCompleted
@@ -698,6 +708,7 @@ rgbnotfound:
             If shape = "[]" Then
                 BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
             End If
+            StatusLabel.Text = "Ready"
         Else
             brushmode = "tool"
             BrushShapeToCircleButton.Enabled = True
@@ -742,6 +753,7 @@ rgbnotfound:
             Label3.Text = "  Tool Color:"
             Label5.Text = "Preview Tool Color:"
             BrushPreview.CreateGraphics.FillRectangle(brush, 0, 0, BrushPreview.Width, BrushPreview.Height)
+            StatusLabel.Text = "Ready"
         Else
             brushmode = "brush"
             BrushShapeToCircleButton.Enabled = True
@@ -757,8 +769,6 @@ rgbnotfound:
             Label3.Text = "Brush Color:"
             Label5.Text = "Preview Brush:"
             Dim pensize, coord As Single
-            pensize = BrushSize.Text
-            BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
             coord = (BrushPreview.Size.Width - pensize) / 2
             If shape = "o" Then
                 BrushPreview.CreateGraphics.FillEllipse(brush, coord, coord, pensize, pensize)
