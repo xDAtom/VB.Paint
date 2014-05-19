@@ -26,6 +26,7 @@ Partial Class MainWindow
         Me.NewShortcut = New System.Windows.Forms.Button
         Me.Label5 = New System.Windows.Forms.Label
         Me.PaintToolsPanel = New System.Windows.Forms.Panel
+        Me.BrushShapeToLineButton = New System.Windows.Forms.Button
         Me.BrushModeToTool = New System.Windows.Forms.RadioButton
         Me.BrushModeToBrush = New System.Windows.Forms.RadioButton
         Me.FontButton = New System.Windows.Forms.Button
@@ -97,6 +98,7 @@ Partial Class MainWindow
         'PaintToolsPanel
         '
         Me.PaintToolsPanel.BackColor = System.Drawing.Color.White
+        Me.PaintToolsPanel.Controls.Add(Me.BrushShapeToLineButton)
         Me.PaintToolsPanel.Controls.Add(Me.BrushModeToTool)
         Me.PaintToolsPanel.Controls.Add(Me.BrushModeToBrush)
         Me.PaintToolsPanel.Controls.Add(Me.FontButton)
@@ -119,6 +121,18 @@ Partial Class MainWindow
         Me.PaintToolsPanel.Name = "PaintToolsPanel"
         Me.PaintToolsPanel.Size = New System.Drawing.Size(193, 450)
         Me.PaintToolsPanel.TabIndex = 14
+        '
+        'BrushShapeToLineButton
+        '
+        Me.BrushShapeToLineButton.BackgroundImage = CType(resources.GetObject("BrushShapeToLineButton.BackgroundImage"), System.Drawing.Image)
+        Me.BrushShapeToLineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.BrushShapeToLineButton.Location = New System.Drawing.Point(134, 46)
+        Me.BrushShapeToLineButton.Margin = New System.Windows.Forms.Padding(2)
+        Me.BrushShapeToLineButton.Name = "BrushShapeToLineButton"
+        Me.BrushShapeToLineButton.Size = New System.Drawing.Size(25, 25)
+        Me.BrushShapeToLineButton.TabIndex = 26
+        Me.BrushShapeToLineButton.UseVisualStyleBackColor = True
+        Me.BrushShapeToLineButton.Visible = False
         '
         'BrushModeToTool
         '
@@ -501,6 +515,7 @@ Partial Class MainWindow
         'OpenFileDialog
         '
         Me.OpenFileDialog.FileName = "OpenFileDialog1"
+        Me.OpenFileDialog.Title = "Open Image"
         '
         'SaveShortcut
         '
@@ -513,6 +528,10 @@ Partial Class MainWindow
         Me.SaveShortcut.Size = New System.Drawing.Size(24, 24)
         Me.SaveShortcut.TabIndex = 20
         Me.SaveShortcut.UseVisualStyleBackColor = True
+        '
+        'SaveFileDialog
+        '
+        Me.SaveFileDialog.Title = "Save Drawing"
         '
         'MainWindow
         '
@@ -590,4 +609,5 @@ Partial Class MainWindow
     Friend WithEvents FontDialog As System.Windows.Forms.FontDialog
     Friend WithEvents BrushModeToTool As System.Windows.Forms.RadioButton
     Friend WithEvents BrushModeToBrush As System.Windows.Forms.RadioButton
+    Friend WithEvents BrushShapeToLineButton As System.Windows.Forms.Button
 End Class

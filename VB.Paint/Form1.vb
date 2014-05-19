@@ -1,6 +1,7 @@
 ﻿Public Class MainWindow
     Dim draw = False
     Dim brush = Brushes.Black
+    Dim pen As Pen = Pens.Black
     Dim blackbrush = Brushes.Black
     Dim whitebrush = Brushes.White
     Dim controlbrush = Brushes.Silver
@@ -18,6 +19,7 @@
     Dim brushmode As String = "brush"
     Dim toolstate As String
     Dim startpoint, endpoint As Point
+    Dim justOpened As Boolean = False
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         StatusLabel.Text = "Initializing..."
@@ -135,6 +137,9 @@ brushsizehandler:
                         Image.CreateGraphics.FillRectangle(brush, endpoint.X, startpoint.Y, startpoint.X - endpoint.X, endpoint.Y - startpoint.Y)
                     End If
                 End If
+                If shape = "/" Then
+                    Image.CreateGraphics.DrawLine(pen, startpoint.X, startpoint.Y, endpoint.X, endpoint.Y)
+                End If
                 BrushModeToBrush.Enabled = True
                 BrushModeToTool.Enabled = True
                 BrushShapeToCircleButton.Enabled = True
@@ -152,6 +157,7 @@ brushsizehandler:
                 CloseShortcut.Enabled = True
                 AboutButton.Enabled = True
                 HelpMenu.Enabled = True
+                shape = "o"
                 toolstate = ""
             End If
         End If
@@ -189,6 +195,11 @@ brushdrawhandler:
 
     Private Sub Image_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Image.MouseUp
         draw = False
+        If justOpened = True Then
+            System.Threading.Thread.Sleep(500)
+            justOpened = False
+            Exit Sub
+        End If
         resscreenshot = New System.Drawing.Bitmap(Image.Width, Image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
         resgraph = Graphics.FromImage(resscreenshot)
         resgraph.CopyFromScreen(Me.Location.X + x, Me.Location.Y + y, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
@@ -199,6 +210,7 @@ brushdrawhandler:
     Private Sub BrushPreview_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushPreview.LoadCompleted
         StatusLabel.Text = "Initializing Brush..."
         brush = Brushes.Black
+        pen = Pens.Black
         Dim coord, pensize As Single
         pensize = 1
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
@@ -284,12 +296,11 @@ brushdrawhandler:
             Exit Sub
         End If
         StatusLabel.Text = "Opening Image..."
-        OpenFileDialog.Filter = "All Files|*.*"
-        OpenFileDialog.FileName = ""
         If OpenFileDialog.ShowDialog(Me) = DialogResult.OK Then
             Dim img As String = OpenFileDialog.FileName
             Image.BackgroundImage = System.Drawing.Bitmap.FromFile(img)
             Image.BackgroundImageLayout = ImageLayout.Stretch
+            justOpened = True
         End If
         StatusLabel.Text = "Ready"
         Exit Sub
@@ -305,12 +316,11 @@ nonimage1:
             Exit Sub
         End If
         StatusLabel.Text = "Opening Image..."
-        OpenFileDialog.Filter = "All Files|*.*"
-        OpenFileDialog.FileName = ""
         If OpenFileDialog.ShowDialog(Me) = DialogResult.OK Then
             Dim img As String = OpenFileDialog.FileName
             Image.BackgroundImage = System.Drawing.Bitmap.FromFile(img)
             Image.BackgroundImageLayout = ImageLayout.Stretch
+            justOpened = True
         End If
         StatusLabel.Text = "Ready"
         Exit Sub
@@ -326,7 +336,7 @@ nonimage2:
         graph = Graphics.FromImage(screenshot)
         graph.CopyFromScreen(Me.Location.X + x, Me.Location.Y + y, 0, 0, Image.Size, CopyPixelOperation.SourceCopy)
         Image.Image = screenshot
-        SaveFileDialog.Title = "Save File"
+        SaveFileDialog.Title = "Save Drawing"
         SaveFileDialog.FileName = "*.bmp"
         SaveFileDialog.Filter = "Bitmap |*.bmp"
         If SaveFileDialog.ShowDialog() = DialogResult.OK Then
@@ -366,6 +376,7 @@ nonimage2:
         g = dec_g
         b = dec_b
         brush = New SolidBrush(Color.FromArgb(r, g, b))
+        pen = New Pen(Color.FromArgb(r, g, b))
         Dim pensize, coord As Single
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
@@ -401,6 +412,7 @@ nonimage2:
         g = dec_g
         b = dec_b
         brush = New SolidBrush(Color.FromArgb(r, g, b))
+        pen = New Pen(Color.FromArgb(r, g, b))
         Dim pensize, coord As Single
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
@@ -436,6 +448,7 @@ nonimage2:
         g = dec_g
         b = dec_b
         brush = New SolidBrush(Color.FromArgb(r, g, b))
+        pen = New Pen(Color.FromArgb(r, g, b))
         Dim pensize, coord As Single
         pensize = BrushSize.Text
         BrushPreview.CreateGraphics.FillRectangle(bgbrush, 0, 0, BrushPreview.Width, BrushPreview.Height)
@@ -692,6 +705,7 @@ rgbnotfound:
             BrushShapeToSquareButton.Enabled = True
             BrushShapeToTextButton.Visible = True
             BrushShapeToTextButton.Enabled = True
+            BrushShapeToLineButton.Visible = False
             If shape = "o" Then BrushShapeToCircleButton.Enabled = False
             If shape = "[]" Then BrushShapeToSquareButton.Enabled = False
             If shape = "ß" Then BrushShapeToTextButton.Enabled = False
@@ -715,6 +729,7 @@ rgbnotfound:
             BrushShapeToSquareButton.Enabled = True
             BrushShapeToTextButton.Enabled = True
             BrushShapeToTextButton.Visible = False
+            BrushShapeToLineButton.Visible = True
             If shape = "ß" Then
                 Label4.Visible = False
                 TextToDrawBox.Visible = False
@@ -740,6 +755,7 @@ rgbnotfound:
             BrushShapeToSquareButton.Enabled = True
             BrushShapeToTextButton.Enabled = True
             BrushShapeToTextButton.Visible = False
+            BrushShapeToLineButton.Visible = True
             If shape = "ß" Then
                 Label4.Visible = False
                 TextToDrawBox.Visible = False
@@ -760,6 +776,7 @@ rgbnotfound:
             BrushShapeToSquareButton.Enabled = True
             BrushShapeToTextButton.Visible = True
             BrushShapeToTextButton.Enabled = True
+            BrushShapeToLineButton.Visible = False
             If shape = "o" Then BrushShapeToCircleButton.Enabled = False
             If shape = "[]" Then BrushShapeToSquareButton.Enabled = False
             If shape = "ß" Then BrushShapeToTextButton.Enabled = False
@@ -776,6 +793,34 @@ rgbnotfound:
             If shape = "[]" Then
                 BrushPreview.CreateGraphics.FillRectangle(brush, coord, coord, pensize, pensize)
             End If
+            StatusLabel.Text = "Ready"
+        End If
+    End Sub
+
+    Private Sub BrushShapeToLineButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BrushShapeToLineButton.Click
+        If brushmode = "tool" Then
+            shape = "/"
+            StatusLabel.Text = "Changing Brush Shape..."
+            Label4.Visible = True
+            Label4.Text = "Click starting point on drawing"
+            BrushModeToBrush.Enabled = False
+            BrushModeToTool.Enabled = False
+            BrushShapeToCircleButton.Enabled = False
+            BrushShapeToSquareButton.Enabled = False
+            Red.Enabled = False
+            Green.Enabled = False
+            Blue.Enabled = False
+            NewButton.Enabled = False
+            NewShortcut.Enabled = False
+            OpenButton.Enabled = False
+            OpenShortcut.Enabled = False
+            SaveButton.Enabled = False
+            SaveShortcut.Enabled = False
+            CloseButton.Enabled = False
+            CloseShortcut.Enabled = False
+            AboutButton.Enabled = False
+            HelpMenu.Enabled = False
+            toolstate = "waitForStart"
             StatusLabel.Text = "Ready"
         End If
     End Sub
